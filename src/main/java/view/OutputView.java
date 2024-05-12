@@ -1,7 +1,8 @@
 package view;
 
-import lotto.LottoNumberCollection;
+import vo.LottoNumberCollection;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -12,22 +13,23 @@ public class OutputView {
 	private static final String SQUARE_BRACKETS_CLOSE = "]";
 	private static final String REST_DELIMITER = ", ";
 
-	public static void outputPhraseLotto(final int phraseLottoCount, final LottoNumberCollection lottoNumberCollection) {
+	public static void outputPhraseLotto(final int phraseLottoCount) {
 		System.out.println(String.format(PHRASE_LOTTO_MESSAGE, phraseLottoCount));
-		List<List<Integer>> pickLottoNumbers = lottoNumberCollection.getPickLottoNumbers();
+	}
 
-		for (List<Integer> lottoNumbers : pickLottoNumbers) {
-			StringBuilder lottoNumberStringBuilder = new StringBuilder(SQUARE_BRACKETS_OPEN);
-			Collections.sort(lottoNumbers);
-			String lottoNumberString = lottoNumbers.stream()
-				.map(number -> Integer.toString(number))
-				.collect(Collectors.joining(REST_DELIMITER));
+	public static void outputPickedLottoNumber(final LottoNumberCollection lottoNumberCollection) {
+		StringBuilder lottoNumberStringBuilder = new StringBuilder(SQUARE_BRACKETS_OPEN);
+		List<Integer> pickLottoNumbers = new ArrayList<>(lottoNumberCollection.getPickLottoNumbers());
+		Collections.sort(pickLottoNumbers);
 
-			lottoNumberStringBuilder.append(lottoNumberString);
-			lottoNumberStringBuilder.append(SQUARE_BRACKETS_CLOSE);
+		String lottoNumberString = pickLottoNumbers.stream()
+			.map(number -> Integer.toString(number))
+			.collect(Collectors.joining(REST_DELIMITER));
 
-			System.out.println(lottoNumberStringBuilder);
-		}
+		lottoNumberStringBuilder.append(lottoNumberString);
+		lottoNumberStringBuilder.append(SQUARE_BRACKETS_CLOSE);
+
+		System.out.println(lottoNumberStringBuilder);
 	}
 
 }

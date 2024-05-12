@@ -1,5 +1,5 @@
 import controller.AmountRequest;
-import lotto.PhraseLottoExecutor;
+import domain.PhraseLottoExecutor;
 import view.InputView;
 
 public class Application {
@@ -8,6 +8,7 @@ public class Application {
 		AmountRequest amountRequest = InputView.inputAmount();
 		PhraseLottoExecutor phraseLottoExecutor = new PhraseLottoExecutor(amountRequest);
 		phraseLottoExecutor.phraseLotto();
+		phraseLottoExecutor.pickLottoNumber();
 	}
 
 }
