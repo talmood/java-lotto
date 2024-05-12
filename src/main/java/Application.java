@@ -1,6 +1,8 @@
 import controller.AmountRequest;
+import controller.WinningNumberRequest;
 import domain.PhraseLottoExecutor;
 import view.InputView;
+import vo.LottoNumberCollectionList;
 
 public class Application {
 
@@ -8,7 +10,10 @@ public class Application {
 		AmountRequest amountRequest = InputView.inputAmount();
 		PhraseLottoExecutor phraseLottoExecutor = new PhraseLottoExecutor(amountRequest);
 		phraseLottoExecutor.phraseLotto();
-		phraseLottoExecutor.pickLottoNumber();
+		LottoNumberCollectionList lottoNumberCollectionList = phraseLottoExecutor.pickLottoNumber();
+
+		WinningNumberRequest winningNumberRequest = InputView.inputWinningNumber();
+
 	}
 
 }

@@ -3,6 +3,7 @@ package domain;
 import controller.AmountRequest;
 import view.OutputView;
 import vo.LottoNumberCollection;
+import vo.LottoNumberCollectionList;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -29,7 +30,9 @@ public class PhraseLottoExecutor {
 		OutputView.outputPhraseLotto(this.amountRequest.fetchPhraseLottoCount());
 	}
 
-	public void pickLottoNumber() {
+	public LottoNumberCollectionList pickLottoNumber() {
+		List<LottoNumberCollection> lottoNumberCollectionList = new ArrayList<>();
+
 		for (int i = 0; i < this.amountRequest.fetchPhraseLottoCount(); i++) {
 			List<Integer> pickLottoNumbers = new ArrayList<>();
 			Collections.shuffle(LOTTO_NUMBERS);
@@ -37,8 +40,12 @@ public class PhraseLottoExecutor {
 				pickLottoNumbers.add(LOTTO_NUMBERS.get(index));
 			});
 
-			OutputView.outputPickedLottoNumber(LottoNumberCollection.of(pickLottoNumbers));
+			final LottoNumberCollection lottoNumberCollection = LottoNumberCollection.of(pickLottoNumbers);
+			OutputView.outputPickedLottoNumber(lottoNumberCollection);
+			lottoNumberCollectionList.add(lottoNumberCollection);
 		}
+
+		return LottoNumberCollectionList.of(lottoNumberCollectionList);
 	}
 
 }

@@ -11,7 +11,8 @@ public class AmountRequest {
 		this.lottoAmount = lottoAmount;
 	}
 
-	public static AmountRequest of(final int lottoAmount) {
+	public static AmountRequest of(final String lottoAmountInput) {
+		final int lottoAmount = Integer.parseInt(lottoAmountInput);
 		AmountValidator.validateAmountNegative(lottoAmount);
 		return new AmountRequest(lottoAmount);
 	}
