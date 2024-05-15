@@ -1,8 +1,6 @@
 package controller;
 
-import domain.Lottos;
-import domain.LottosGenerator;
-import domain.PurchaseAmount;
+import domain.*;
 import view.input.ConsoleInputView;
 import view.input.InputView;
 import view.input.dto.PurchaseInput;
@@ -18,12 +16,13 @@ public class LottoSimulator {
 
         PurchaseInput purchaseInput = inputView.inputPurchaseAmount();
         PurchaseAmount purchaseAmount = purchaseInput.toPurchaseAmount();
-
-        PurchaseOutput purchaseOutput = purchaseAmount.toPurchaseOutput();
+        PurchaseCountCalculator purchaseCountCalculator = new PurchaseCountCalculator(purchaseAmount);
+        PurchaseCount purchaseCount = purchaseCountCalculator.calculate();
+        PurchaseOutput purchaseOutput = purchaseCount.toPurchaseOutput();
         outputView.viewPurchaseAmount(purchaseOutput);
 
-        LottosGenerator lottosGenerator = new LottosGenerator(purchaseAmount);
-        Lottos lottos = lottosGenerator.generate()
+        LottosGenerator lottosGenerator = new LottosGenerator(purchaseCount);
+        Lottos lottos = lottosGenerator.generate();
 
 
 

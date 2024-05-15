@@ -1,39 +1,29 @@
 package domain;
 
 import exception.DomainValidationException;
-import view.output.dto.PurchaseOutput;
 
 import static exception.code.ErrorCode.*;
 
 public class PurchaseAmount {
 
-    private static final int LOTTO_PRICE = 1000;
-
     private final int purchaseAmount;
 
-    private final int purchaseCount;
-
-    private PurchaseAmount(int purchaseAmount, int purchaseCount) {
-        this.validatePurchaseCount(purchaseCount);
+    private PurchaseAmount(int purchaseAmount) {
+        this.validateAmount(purchaseAmount);
         this.purchaseAmount = purchaseAmount;
-        this.purchaseCount = purchaseCount;
     }
 
     public static PurchaseAmount create(int purchaseAmount) {
-        return new PurchaseAmount(purchaseAmount, purchaseAmount/LOTTO_PRICE);
+        return new PurchaseAmount(purchaseAmount);
     }
 
-    private void validatePurchaseCount(int purchaseCount) {
-        if(purchaseCount < 1) {
-            throw new DomainValidationException(PURCHASE_COUNT_BIGGER_THAN_ZERO, "구입 갯수는 1개이상이어야 합니다.");
+    public int fetchPurchaseAmount() {
+        return this.purchaseAmount;
+    }
+
+    private void validateAmount(int purchaseAmount) {
+        if(purchaseAmount <= 0) {
+            throw new DomainValidationException(INVALID_PURCHASE_AMOUNT, "구입 금액은 0보다 커야합니다.");
         }
-    }
-
-    public PurchaseOutput toPurchaseOutput() {
-        return new PurchaseOutput(this.purchaseCount);
-    }
-
-    public int fetchPurchaseCount() {
-        return this.purchaseCount;
     }
 }

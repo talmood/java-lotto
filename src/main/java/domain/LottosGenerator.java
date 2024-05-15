@@ -16,14 +16,14 @@ public class LottosGenerator {
                     .boxed()
                     .collect(Collectors.toList());
 
-    private final PurchaseAmount purchaseAmount;
+    private final PurchaseCount purchaseCount;
 
-    public LottosGenerator(PurchaseAmount purchaseAmount) {
-        this.purchaseAmount = purchaseAmount;
+    public LottosGenerator(PurchaseCount purchaseCount) {
+        this.purchaseCount = purchaseCount;
     }
 
     public Lottos generate() {
-        List<Lotto> lottos = IntStream.range(0, this.purchaseAmount.fetchPurchaseCount())
+        List<Lotto> lottos = IntStream.range(0, this.purchaseCount.fetchPurchaseCount())
                 .mapToObj(count -> this.generateLotto())
                 .collect(Collectors.toList());
 
