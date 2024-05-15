@@ -1,9 +1,12 @@
 package view;
 
+import view.dto.PurchaseInput;
+
 public class ConsoleInputView implements InputView{
     @Override
-    public void inputPurchaseAmount() {
+    public PurchaseInput inputPurchaseAmount() {
 
+        return null;
     }
 
     @Override

@@ -1,8 +1,10 @@
 package view;
 
+import view.dto.PurchaseInput;
+
 public interface InputView {
 
-    void inputPurchaseAmount();
+    PurchaseInput inputPurchaseAmount();
 
     void inputWinningNumbers();
 
