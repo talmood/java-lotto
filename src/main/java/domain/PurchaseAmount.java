@@ -32,4 +32,8 @@ public class PurchaseAmount {
     public PurchaseOutput toPurchaseOutput() {
         return new PurchaseOutput(this.purchaseCount);
     }
+
+    public int fetchPurchaseCount() {
+        return this.purchaseCount;
+    }
 }

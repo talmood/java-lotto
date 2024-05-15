@@ -1,5 +1,7 @@
 package controller;
 
+import domain.Lottos;
+import domain.LottosGenerator;
 import domain.PurchaseAmount;
 import view.input.ConsoleInputView;
 import view.input.InputView;
@@ -16,8 +18,12 @@ public class LottoSimulator {
 
         PurchaseInput purchaseInput = inputView.inputPurchaseAmount();
         PurchaseAmount purchaseAmount = purchaseInput.toPurchaseAmount();
+
         PurchaseOutput purchaseOutput = purchaseAmount.toPurchaseOutput();
         outputView.viewPurchaseAmount(purchaseOutput);
+
+        LottosGenerator lottosGenerator = new LottosGenerator(purchaseAmount);
+        Lottos lottos = lottosGenerator.generate()
 
 
 
