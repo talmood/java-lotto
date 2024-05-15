@@ -1,6 +1,7 @@
 package domain;
 
 import exception.DomainValidationException;
+import view.output.dto.PurchaseOutput;
 
 import static exception.code.ErrorCode.*;
 
@@ -26,5 +27,9 @@ public class PurchaseAmount {
         if(purchaseCount < 1) {
             throw new DomainValidationException(PURCHASE_COUNT_BIGGER_THAN_ZERO);
         }
+    }
+
+    public PurchaseOutput toPurchaseOutput() {
+        return new PurchaseOutput(this.purchaseCount);
     }
 }
