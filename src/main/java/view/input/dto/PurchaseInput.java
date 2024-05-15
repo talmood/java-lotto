@@ -1,4 +1,4 @@
-package view.dto;
+package view.input.dto;
 
 import domain.PurchaseAmount;
 

@@ -1,9 +1,9 @@
 package controller;
 
 import domain.PurchaseAmount;
-import view.ConsoleInputView;
-import view.InputView;
-import view.dto.PurchaseInput;
+import view.input.ConsoleInputView;
+import view.input.InputView;
+import view.input.dto.PurchaseInput;
 
 public class LottoSimulator {
 
@@ -11,6 +11,7 @@ public class LottoSimulator {
         InputView inputView = new ConsoleInputView();
         PurchaseInput purchaseInput = inputView.inputPurchaseAmount();
         PurchaseAmount purchaseAmount = purchaseInput.toPurchaseAmount();
+
 
     }
 }

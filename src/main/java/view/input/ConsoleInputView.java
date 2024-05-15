@@ -1,10 +1,9 @@
-package view;
+package view.input;
 
 import exception.InvalidInputException;
-import exception.code.ErrorCode;
 import util.Console;
 import util.StringUtils;
-import view.dto.PurchaseInput;
+import view.input.dto.PurchaseInput;
 
 import static exception.code.ErrorCode.*;
 

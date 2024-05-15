@@ -1,6 +1,6 @@
-package view;
+package view.input;
 
-import view.dto.PurchaseInput;
+import view.input.dto.PurchaseInput;
 
 public interface InputView {
 
