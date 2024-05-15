@@ -7,4 +7,8 @@ public class PurchaseOutput {
     public PurchaseOutput(int purchaseCount) {
         this.purchaseCount = purchaseCount;
     }
+
+    public int fetchPurchaseCount() {
+        return this.purchaseCount;
+    }
 }
