@@ -20,5 +20,6 @@ public class LottoSimulator {
         outputView.viewPurchaseAmount(purchaseOutput);
 
 
+
     }
 }

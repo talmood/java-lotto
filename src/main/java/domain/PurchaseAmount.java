@@ -25,7 +25,7 @@ public class PurchaseAmount {
 
     private void validatePurchaseCount(int purchaseCount) {
         if(purchaseCount < 1) {
-            throw new DomainValidationException(PURCHASE_COUNT_BIGGER_THAN_ZERO);
+            throw new DomainValidationException(PURCHASE_COUNT_BIGGER_THAN_ZERO, "구입 갯수는 1개이상이어야 합니다.");
         }
     }
 

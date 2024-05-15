@@ -32,7 +32,7 @@ public class ConsoleInputView implements InputView{
 
     private void validateNumber(String input) {
         if(!StringUtils.isNumeric(input)) {
-            throw new InvalidInputException(ONLY_NUMBER_INPUT);
+            throw new InvalidInputException(ONLY_NUMBER_INPUT, "숫자인 입력값만 허용됩니다.");
         }
     }
 }

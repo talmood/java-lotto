@@ -6,8 +6,8 @@ public class DomainValidationException extends IllegalArgumentException {
 
     private final ErrorCode errorCode;
 
-    public DomainValidationException(ErrorCode errorCode) {
-        super(errorCode.getMessage());
+    public DomainValidationException(ErrorCode errorCode, String message) {
+        super(message);
         this.errorCode = errorCode;
     }
 }
