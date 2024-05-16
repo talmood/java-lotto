@@ -1,5 +1,6 @@
 package view.output;
 
+import view.output.dto.LottosOutput;
 import view.output.dto.PurchaseOutput;
 
 public class ConsoleOutputView implements OutputView{
@@ -12,8 +13,8 @@ public class ConsoleOutputView implements OutputView{
     }
 
     @Override
-    public void viewLotto() {
-
+    public void viewLottos(LottosOutput lottosOutput) {
+        System.out.println(lottosOutput.fetchLottosNumbersStr());
     }
 
     @Override

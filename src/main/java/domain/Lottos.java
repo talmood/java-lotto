@@ -1,6 +1,10 @@
 package domain;
 
+import view.output.dto.LottoOutput;
+import view.output.dto.LottosOutput;
+
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Lottos {
 
@@ -14,4 +18,7 @@ public class Lottos {
         return new Lottos(lottos);
     }
 
+    public List<Lotto> fetchLottoList() {
+        return List.copyOf(this.lottos);
+    }
 }

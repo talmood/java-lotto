@@ -1,6 +1,7 @@
 package domain;
 
 import exception.DomainValidationException;
+import view.output.dto.LottoOutput;
 
 import java.util.List;
 
@@ -40,5 +41,9 @@ public class Lotto {
 
     private boolean isLottoNumberRange(Integer number) {
         return number >= MIN_LOTTO_NUMBER_INCLUSIVE && number <= MAX_LOTTO_NUMBER_INCLUSIVE;
+    }
+
+    public List<Integer> fetchLottoNumberList() {
+        return List.copyOf(this.lottoNumbers);
     }
 }
