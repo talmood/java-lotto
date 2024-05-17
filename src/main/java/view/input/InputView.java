@@ -1,5 +1,6 @@
 package view.input;
 
+import view.input.dto.BonusNumberInput;
 import view.input.dto.PurchaseInput;
 import view.input.dto.WinningNumbersInput;
 
@@ -9,5 +10,5 @@ public interface InputView {
 
     WinningNumbersInput inputWinningNumbers();
 
-    void inputBonusNumber();
+    BonusNumberInput inputBonusNumber();
 }

@@ -4,6 +4,7 @@ import exception.InvalidInputException;
 import util.Console;
 import util.PatternMatchUtils;
 import util.StringUtils;
+import view.input.dto.BonusNumberInput;
 import view.input.dto.PurchaseInput;
 import view.input.dto.WinningNumbersInput;
 
@@ -17,6 +18,7 @@ public class ConsoleInputView implements InputView {
 
     private static final String PURCHASE_AMOUNT_NAVIGATION = "구입금액을 입력해 주세요.";
     private static final String WINNING_NUMBERS_NAVIGATION = "지난 주 당첨 번호를 입력해 주세요.";
+    private static final String BONUS_NUMBER_NAVIGATION = "보너스 볼을 입력해 주세요.";
     private static final String NUMBERS_INPUT_REGEX = "^(\\d,\\s){5}\\d$";
 
     @Override
@@ -33,7 +35,7 @@ public class ConsoleInputView implements InputView {
         System.out.println(WINNING_NUMBERS_NAVIGATION);
         String input = Console.readLine();
         this.validateNumbers(input);
-        
+
         return new WinningNumbersInput(
                 Arrays.stream(input.split(", "))
                         .map(Integer::parseInt)
@@ -42,8 +44,12 @@ public class ConsoleInputView implements InputView {
     }
 
     @Override
-    public void inputBonusNumber() {
+    public BonusNumberInput inputBonusNumber() {
+        System.out.println(BONUS_NUMBER_NAVIGATION);
+        String input = Console.readLine();
+        this.validateNumber(input);
 
+        return new BonusNumberInput(Integer.parseInt(input));
     }
 
     private void validateNumber(String input) {

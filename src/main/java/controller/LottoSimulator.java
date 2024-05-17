@@ -3,6 +3,7 @@ package controller;
 import domain.*;
 import view.input.ConsoleInputView;
 import view.input.InputView;
+import view.input.dto.BonusNumberInput;
 import view.input.dto.PurchaseInput;
 import view.input.dto.WinningNumbersInput;
 import view.output.ConsoleOutputView;
@@ -27,6 +28,11 @@ public class LottoSimulator {
         outputView.viewLottos(LottosOutput.from(lottos));
 
         WinningNumbersInput winningNumbersInput = inputView.inputWinningNumbers();
-        System.out.println(winningNumbersInput);
+        WinningNumbers winningNumbers = winningNumbersInput.toWinningNumbers();
+
+        BonusNumberInput bonusNumberInput = inputView.inputBonusNumber();
+        BonusNumber bonusNumber = bonusNumberInput.toBonusNumber();
+
+
     }
 }
