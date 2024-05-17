@@ -4,6 +4,7 @@ import domain.*;
 import view.input.ConsoleInputView;
 import view.input.InputView;
 import view.input.dto.PurchaseInput;
+import view.input.dto.WinningNumbersInput;
 import view.output.ConsoleOutputView;
 import view.output.OutputView;
 import view.output.dto.LottosOutput;
@@ -25,5 +26,7 @@ public class LottoSimulator {
         Lottos lottos = lottosGenerator.generate();
         outputView.viewLottos(LottosOutput.from(lottos));
 
+        WinningNumbersInput winningNumbersInput = inputView.inputWinningNumbers();
+        System.out.println(winningNumbersInput);
     }
 }

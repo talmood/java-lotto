@@ -10,12 +10,11 @@ public class PurchaseOutput {
         this.purchaseCount = purchaseCount;
     }
 
-    public int fetchPurchaseCount() {
-        return this.purchaseCount;
+    public static PurchaseOutput from(PurchaseCount purchaseCount) {
+        return new PurchaseOutput(purchaseCount.fetchPurchaseCount());
     }
 
-    public static PurchaseOutput from(PurchaseCount purchaseCount) {
-
-        return new PurchaseOutput(purchaseCount.fetchPurchaseCount());
+    public int fetchPurchaseCount() {
+        return this.purchaseCount;
     }
 }

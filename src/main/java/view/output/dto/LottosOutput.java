@@ -13,17 +13,17 @@ public class LottosOutput {
         this.lottoOutputs = lottoOutputs;
     }
 
+    public static LottosOutput from(Lottos lottos) {
+        return new LottosOutput(
+                lottos.toList().stream()
+                        .map(LottoOutput::from)
+                        .collect(Collectors.toList())
+        );
+    }
+
     public String fetchLottosNumbersStr() {
         return this.lottoOutputs.stream()
                 .map(LottoOutput::fetchLottoNumbersToStr)
                 .collect(Collectors.joining("\n"));
-    }
-
-    public static LottosOutput from(Lottos lottos) {
-        List<LottoOutput> lottoOutputs = lottos.toList().stream()
-                .map(LottoOutput::from)
-                .collect(Collectors.toList());
-
-        return new LottosOutput(lottoOutputs);
     }
 }

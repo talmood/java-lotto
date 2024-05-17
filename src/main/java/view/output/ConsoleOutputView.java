@@ -3,7 +3,7 @@ package view.output;
 import view.output.dto.LottosOutput;
 import view.output.dto.PurchaseOutput;
 
-public class ConsoleOutputView implements OutputView{
+public class ConsoleOutputView implements OutputView {
 
     private static final String PURCHASE_COUNT_NAVIGATION = "%d개를 구매했습니다.";
 
@@ -14,7 +14,7 @@ public class ConsoleOutputView implements OutputView{
 
     @Override
     public void viewLottos(LottosOutput lottosOutput) {
-        System.out.println(lottosOutput.fetchLottosNumbersStr());
+        System.out.println(lottosOutput.fetchLottosNumbersStr() + "\n");
     }
 
     @Override
