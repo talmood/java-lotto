@@ -33,6 +33,7 @@ public class LottosGenerator {
     private Lotto generateLotto() {
         Collections.shuffle(totalLottoNumbers);
         List<Integer> numbers = List.copyOf(totalLottoNumbers.subList(0, LOTTO_NUMBERS_SIZE));
+
         return Lotto.create(numbers);
     }
 }

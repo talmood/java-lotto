@@ -1,6 +1,6 @@
 package view.output.dto;
 
-import domain.Lotto;
+import domain.Lottos;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -15,7 +15,15 @@ public class LottosOutput {
 
     public String fetchLottosNumbersStr() {
         return this.lottoOutputs.stream()
-                .map(LottoOutput::fetchLottoNumbersStr)
+                .map(LottoOutput::fetchLottoNumbersToStr)
                 .collect(Collectors.joining("\n"));
+    }
+
+    public static LottosOutput from(Lottos lottos) {
+        List<LottoOutput> lottoOutputs = lottos.toList().stream()
+                .map(LottoOutput::from)
+                .collect(Collectors.toList());
+
+        return new LottosOutput(lottoOutputs);
     }
 }

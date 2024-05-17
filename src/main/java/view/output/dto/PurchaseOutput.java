@@ -1,5 +1,7 @@
 package view.output.dto;
 
+import domain.PurchaseCount;
+
 public class PurchaseOutput {
 
     private final int purchaseCount;
@@ -10,5 +12,10 @@ public class PurchaseOutput {
 
     public int fetchPurchaseCount() {
         return this.purchaseCount;
+    }
+
+    public static PurchaseOutput from(PurchaseCount purchaseCount) {
+
+        return new PurchaseOutput(purchaseCount.fetchPurchaseCount());
     }
 }
