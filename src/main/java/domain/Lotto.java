@@ -13,14 +13,12 @@ public class Lotto {
     private static final int MIN_LOTTO_NUMBER_INCLUSIVE = 1;
     private static final int MAX_LOTTO_NUMBER_INCLUSIVE = 45;
 
-
     private final List<Integer> lottoNumbers;
 
-
     private Lotto(List<Integer> lottoNumbers) {
-        this.validateNotEmpty(lottoNumbers);
+        this.validateLottoNumbersNotEmpty(lottoNumbers);
         this.validateLottoNumbersUnique(lottoNumbers);
-        this.validateNumberRange(lottoNumbers);
+        this.validateLottoNumbersInRange(lottoNumbers);
         this.lottoNumbers = lottoNumbers;
     }
 
@@ -28,7 +26,7 @@ public class Lotto {
         return new Lotto(lottoNumbers);
     }
 
-    private void validateNumberRange(List<Integer> lottoNumbers) {
+    private void validateLottoNumbersInRange(List<Integer> lottoNumbers) {
         if (!isAllLottoNumberRange(lottoNumbers)) {
             throw new DomainValidationException(
                     INVALID_LOTTO_NUMBER_RANGE,
@@ -37,7 +35,7 @@ public class Lotto {
         }
     }
 
-    private void validateNotEmpty(List<Integer> lottoNumbers) {
+    private void validateLottoNumbersNotEmpty(List<Integer> lottoNumbers) {
         if (CollectionUtils.isEmpty(lottoNumbers)) {
             throw new DomainValidationException(COLLECTION_MUST_NOT_BE_EMPTY, "로또 번호는 null이거나 empty하면 안됩니다.");
         }
@@ -64,5 +62,22 @@ public class Lotto {
 
     public List<Integer> fetchLottoNumberList() {
         return List.copyOf(this.lottoNumbers);
+    }
+
+    private long countMatchWinningNumbers(WinningNumbers winningNumbers) {
+        return winningNumbers.countMatchNumbers(this.lottoNumbers);
+    }
+
+    private long countMatchBonusNumber(BonusNumber bonusNumber) {
+        return this.lottoNumbers.stream()
+                .filter(bonusNumber::isSameNumber)
+                .count();
+    }
+
+    public LottoWinning findLottoWinning(WinningNumbers winningNumbers, BonusNumber bonusNumber) {
+        long matchedWinningNumberCount = this.countMatchWinningNumbers(winningNumbers);
+        long matchedBonusNumberCount = this.countMatchBonusNumber(bonusNumber);
+
+        return LottoWinning.findLottoWinning(matchedWinningNumberCount, matchedBonusNumberCount);
     }
 }

@@ -23,10 +23,6 @@ public class WinningNumbers {
         return new WinningNumbers(winningNumbers);
     }
 
-    public boolean isContainNumber(int number) {
-        return this.winningNumbers.contains(number);
-    }
-
     private void validateNotEmpty(List<WinningNumber> winningNumbers) {
         if (CollectionUtils.isEmpty(winningNumbers)) {
             throw new DomainValidationException(COLLECTION_MUST_NOT_BE_EMPTY, "당첨 번호는 null이거나 empty이면 안됩니다.");
@@ -41,5 +37,19 @@ public class WinningNumbers {
 
     private boolean isUniqueWinningNumbers(List<WinningNumber> winningNumbers) {
         return new HashSet<>(winningNumbers).size() == winningNumbers.size();
+    }
+
+    public long countMatchNumbers(List<Integer> numbers) {
+        return numbers.stream()
+                .filter(this::isContainNumber)
+                .count();
+    }
+
+    public boolean isContainNumber(int number) {
+        long count = this.winningNumbers.stream()
+                .filter(winningNumber -> winningNumber.isSameNumber(number))
+                .count();
+
+        return count > 0;
     }
 }

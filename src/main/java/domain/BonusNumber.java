@@ -15,4 +15,10 @@ public class BonusNumber {
     public int fetchBonusNumber() {
         return this.bonusNumber;
     }
+
+    public boolean isSameNumber(int number) {
+        return this.bonusNumber == number;
+    }
+
+
 }

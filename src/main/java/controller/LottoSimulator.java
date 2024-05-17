@@ -33,6 +33,8 @@ public class LottoSimulator {
         BonusNumberInput bonusNumberInput = inputView.inputBonusNumber();
         BonusNumber bonusNumber = bonusNumberInput.toBonusNumber();
 
+        LottosResultCalculator lottosResultCalculator = new LottosResultCalculator(lottos, winningNumbers, bonusNumber);
+        LottoWinnings lottoWinnings = lottosResultCalculator.calculate();
 
     }
 }

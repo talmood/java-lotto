@@ -23,17 +23,18 @@ public class LottosGenerator {
     }
 
     public Lottos generate() {
-        List<Lotto> lottos = IntStream.range(0, this.purchaseCount.fetchPurchaseCount())
-                .mapToObj(count -> this.generateLotto())
-                .collect(Collectors.toList());
-
-        return Lottos.create(lottos);
+        return Lottos.create(
+                IntStream.range(0, this.purchaseCount.fetchPurchaseCount())
+                        .mapToObj(count -> this.generateLotto())
+                        .collect(Collectors.toList())
+        );
     }
 
     private Lotto generateLotto() {
         Collections.shuffle(totalLottoNumbers);
-        List<Integer> numbers = List.copyOf(totalLottoNumbers.subList(0, LOTTO_NUMBERS_SIZE));
+        List<Integer> lottoNumbers = totalLottoNumbers.subList(0, LOTTO_NUMBERS_SIZE);
+        Collections.sort(lottoNumbers);
 
-        return Lotto.create(numbers);
+        return Lotto.create(List.copyOf(totalLottoNumbers.subList(0, LOTTO_NUMBERS_SIZE)));
     }
 }

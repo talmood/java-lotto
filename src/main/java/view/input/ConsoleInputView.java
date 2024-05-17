@@ -19,7 +19,7 @@ public class ConsoleInputView implements InputView {
     private static final String PURCHASE_AMOUNT_NAVIGATION = "구입금액을 입력해 주세요.";
     private static final String WINNING_NUMBERS_NAVIGATION = "지난 주 당첨 번호를 입력해 주세요.";
     private static final String BONUS_NUMBER_NAVIGATION = "보너스 볼을 입력해 주세요.";
-    private static final String NUMBERS_INPUT_REGEX = "^(\\d,\\s){5}\\d$";
+    private static final String NUMBERS_INPUT_REGEX = "^\\d{1,2}(,\\s\\d{1,2}){5}$";
 
     @Override
     public PurchaseInput inputPurchaseAmount() {
