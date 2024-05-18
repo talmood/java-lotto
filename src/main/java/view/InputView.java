@@ -30,21 +30,21 @@ public class InputView {
 		}
 	}
 
-	public static ManualNumberRequest inputManual() {
+	public static ManualNumberRequest inputManual(final int lottoAmount) {
 		System.out.println(INPUT_MANUAL_COUNT_MESSAGE);
 		try {
-			return fetchManualNumberRequest();
+			return fetchManualNumberRequest(lottoAmount);
 		} catch (IllegalArgumentException e) {
 			System.out.println(e.getMessage());
-			return inputManual();
+			return inputManual(lottoAmount);
 		}
 	}
 
-	private static ManualNumberRequest fetchManualNumberRequest() {
+	private static ManualNumberRequest fetchManualNumberRequest(final int lottoAmount) {
 		List<String> manualNumberInputs = new ArrayList<>();
 
 		final String manualCountInput = Console.readLine();
-		InputValidator.validateManualCountNotNumber(manualCountInput);
+		InputValidator.validateManualCountNotNumber(manualCountInput, lottoAmount);
 		final int manualCount = Integer.parseInt(manualCountInput);
 
 		System.out.println(INPUT_MANUAL_NUMBER_MESSAGE);

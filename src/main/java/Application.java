@@ -13,16 +13,16 @@ public class Application {
 
 	public static void main(String[] args) {
 		final AmountRequest amountRequest = InputView.inputAmount();
-		final ManualNumberRequest manualNumberRequest = InputView.inputManual();
+		final ManualNumberRequest manualNumberRequest = InputView.inputManual(amountRequest.getLottoAmount());
 		final WinningTypeCollection winningTypeCollection = retrieveWinning(
-			receivePhraseLotto(amountRequest)
+			receivePhraseLotto(amountRequest, manualNumberRequest)
 		);
 		final RateCalculateExecutor rateCalculateExecutor = new RateCalculateExecutor(amountRequest, winningTypeCollection);
 		rateCalculateExecutor.calculateRate();
 	}
 
-	private static LottoNumberCollectionList receivePhraseLotto(final AmountRequest amountRequest) {
-		PhraseLottoExecutor phraseLottoExecutor = new PhraseLottoExecutor(amountRequest);
+	private static LottoNumberCollectionList receivePhraseLotto(final AmountRequest amountRequest, final ManualNumberRequest manualNumberRequest) {
+		PhraseLottoExecutor phraseLottoExecutor = new PhraseLottoExecutor(amountRequest, manualNumberRequest);
 		phraseLottoExecutor.phraseLotto();
 		return phraseLottoExecutor.pickLottoNumber();
 	}

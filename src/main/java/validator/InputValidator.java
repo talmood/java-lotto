@@ -6,6 +6,7 @@ import java.util.List;
 public class InputValidator {
 	private static final String AMOUNT_NOT_NUMBER_EXCEPTION_MESSAGE = "[ERROR] 금액의 입력은 0 이상의 정수여야 합니다.";
 	private static final String MANUAL_COUNT_NOT_NUMBER_EXCEPTION_MESSAGE = "[ERROR] 수동으로 구매할 로또 수의 입력은 0 이상의 정수여야 합니다.";
+	private static final String MANUAL_COUNT_NOT_BIGGER_EXCEPTION_MESSAGE = "[ERROR] 수동으로 구매할 로또 수는 구매한 로또 수보다 클 수 없습니다.";
 	private static final String MANUAL_NUMBER_COUNT_EXCEPTION_MESSAGE = "[ERROR] 수동으로 구매할 번호는 6개여야 합니다.";
 	private static final String MANUAL_NUMBER_NOT_NUMBER_MESSAGE = "[ERROR] 수동으로 구매할 번호는 1부터 45까지의 숫자로 이루어져야 합니다.";
 	private static final String WINNING_NUMBER_COUNT_EXCEPTION_MESSAGE = "[ERROR] 당첨 번호는 6개여야 합니다.";
@@ -22,9 +23,12 @@ public class InputValidator {
 		}
 	}
 
-	public static void validateManualCountNotNumber(final String manualCountInput) {
+	public static void validateManualCountNotNumber(final String manualCountInput, final int lottoAmount) {
 		try {
-			Integer.parseInt(manualCountInput);
+			int manualCount = Integer.parseInt(manualCountInput);
+			if (manualCount > lottoAmount) {
+				throw new IllegalArgumentException(MANUAL_COUNT_NOT_BIGGER_EXCEPTION_MESSAGE);
+			}
 		} catch (NumberFormatException e) {
 			throw new IllegalArgumentException(MANUAL_COUNT_NOT_NUMBER_EXCEPTION_MESSAGE);
 		}
@@ -49,7 +53,7 @@ public class InputValidator {
 			Arrays.stream(splitInput)
 				.map(Integer::parseInt)
 				.forEach(manualNumber -> {
-					if (isLottoNumberRange(manualNumber)) {
+					if (!isLottoNumberRange(manualNumber)) {
 						throw new IllegalArgumentException(MANUAL_NUMBER_NOT_NUMBER_MESSAGE);
 					}
 				});
