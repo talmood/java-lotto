@@ -17,7 +17,9 @@ public class InputValidator {
 	}
 
 	public static void validateWinningNumberInput(final String winningNumberInput) {
-		String[] splitInput = winningNumberInput.trim().split(WINNING_NUMBER_SPLIT_REGEX);
+		String[] splitInput = winningNumberInput
+			.replaceAll(" ", "")
+			.split(WINNING_NUMBER_SPLIT_REGEX);
 
 		validateWinningNumberCount(splitInput);
 

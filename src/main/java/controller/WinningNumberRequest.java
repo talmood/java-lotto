@@ -18,7 +18,9 @@ public class WinningNumberRequest {
 	}
 
 	private static List<Integer> generateWinningNumber(final String winningNumberInput) {
-		String[] splitInput = winningNumberInput.trim().split(WINNING_NUMBER_SPLIT_REGEX);
+		String[] splitInput = winningNumberInput
+			.replaceAll(" ", "")
+			.split(WINNING_NUMBER_SPLIT_REGEX);
 		return Arrays.stream(splitInput)
 			.map(Integer::parseInt)
 			.collect(Collectors.toList());
