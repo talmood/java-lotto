@@ -6,13 +6,13 @@ import java.util.List;
 
 import static exception.code.ErrorCode.WINNING_NUMBERS_CONTAIN_BONUS_NUMBER;
 
-public class LottosResultCalculator {
+public class LottosWinningCalculator {
 
     private final Lottos lottos;
     private final WinningNumbers winningNumbers;
     private final BonusNumber bonusNumber;
 
-    public LottosResultCalculator(Lottos lottos, WinningNumbers winningNumbers, BonusNumber bonusNumber) {
+    public LottosWinningCalculator(Lottos lottos, WinningNumbers winningNumbers, BonusNumber bonusNumber) {
         this.validateBonusNumberNotContainWinningNumber(winningNumbers, bonusNumber);
         this.lottos = lottos;
         this.winningNumbers = winningNumbers;

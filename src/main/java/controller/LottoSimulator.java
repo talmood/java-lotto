@@ -34,8 +34,8 @@ public class LottoSimulator {
         BonusNumberInput bonusNumberInput = inputView.inputBonusNumber();
         BonusNumber bonusNumber = bonusNumberInput.toBonusNumber();
 
-        LottosResultCalculator lottosResultCalculator = new LottosResultCalculator(lottos, winningNumbers, bonusNumber);
-        LottoWinnings lottoWinnings = lottosResultCalculator.calculate();
+        LottosWinningCalculator lottosWinningCalculator = new LottosWinningCalculator(lottos, winningNumbers, bonusNumber);
+        LottoWinnings lottoWinnings = lottosWinningCalculator.calculate();
         LottoWinningStatisticsOutput lottoWinningStatisticsOutput = LottoWinningStatisticsOutput.from(lottoWinnings, purchaseAmount);
         outputView.viewWinningStatistics(lottoWinningStatisticsOutput);
     }
