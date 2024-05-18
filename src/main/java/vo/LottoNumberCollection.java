@@ -11,7 +11,7 @@ public class LottoNumberCollection {
 		this.pickLottoNumbers.addAll(pickLottoNumbers);
 	}
 
-	public static LottoNumberCollection of(final List<Integer> pickLottoNumbers) {
+	public static LottoNumberCollection from(final List<Integer> pickLottoNumbers) {
 		return new LottoNumberCollection(pickLottoNumbers);
 	}
 

@@ -7,7 +7,7 @@ public class BonusNumberRequest {
 		this.bonusNumber = bonusNumber;
 	}
 
-	public static BonusNumberRequest of(final String bonusNumberInput) {
+	public static BonusNumberRequest from(final String bonusNumberInput) {
 		return new BonusNumberRequest(generateBonusNumber(bonusNumberInput));
 	}
 

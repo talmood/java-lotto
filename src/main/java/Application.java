@@ -1,5 +1,6 @@
 import controller.AmountRequest;
 import controller.BonusNumberRequest;
+import controller.ManualNumberRequest;
 import controller.WinningNumberRequest;
 import domain.PhraseLottoExecutor;
 import domain.RateCalculateExecutor;
@@ -11,11 +12,12 @@ import vo.WinningTypeCollection;
 public class Application {
 
 	public static void main(String[] args) {
-		AmountRequest amountRequest = InputView.inputAmount();
-
-		WinningTypeCollection winningTypeCollection = retrieveWinning(receivePhraseLotto(amountRequest));
-
-		RateCalculateExecutor rateCalculateExecutor = new RateCalculateExecutor(amountRequest, winningTypeCollection);
+		final AmountRequest amountRequest = InputView.inputAmount();
+		final ManualNumberRequest manualNumberRequest = InputView.inputManual();
+		final WinningTypeCollection winningTypeCollection = retrieveWinning(
+			receivePhraseLotto(amountRequest)
+		);
+		final RateCalculateExecutor rateCalculateExecutor = new RateCalculateExecutor(amountRequest, winningTypeCollection);
 		rateCalculateExecutor.calculateRate();
 	}
 

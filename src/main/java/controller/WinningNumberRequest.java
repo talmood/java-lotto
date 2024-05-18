@@ -13,7 +13,7 @@ public class WinningNumberRequest {
 		this.winningNumbers = winningNumbers;
 	}
 
-	public static WinningNumberRequest of(final String winningNumberInput) {
+	public static WinningNumberRequest from(final String winningNumberInput) {
 		return new WinningNumberRequest(generateWinningNumber(winningNumberInput));
 	}
 

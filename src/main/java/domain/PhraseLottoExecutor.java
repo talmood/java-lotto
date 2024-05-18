@@ -40,12 +40,12 @@ public class PhraseLottoExecutor {
 				pickLottoNumbers.add(LOTTO_NUMBERS.get(index));
 			});
 
-			final LottoNumberCollection lottoNumberCollection = LottoNumberCollection.of(pickLottoNumbers);
+			final LottoNumberCollection lottoNumberCollection = LottoNumberCollection.from(pickLottoNumbers);
 			OutputView.outputPickedLottoNumber(lottoNumberCollection);
 			lottoNumberCollectionList.add(lottoNumberCollection);
 		}
 
-		return LottoNumberCollectionList.of(lottoNumberCollectionList);
+		return LottoNumberCollectionList.from(lottoNumberCollectionList);
 	}
 
 }
