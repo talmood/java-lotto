@@ -3,13 +3,11 @@ package view.input.dto;
 import domain.BonusNumber;
 import exception.InvalidInputException;
 
+import static constant.LottoConstants.MAX_LOTTO_NUMBER_INCLUSIVE;
+import static constant.LottoConstants.MIN_LOTTO_NUMBER_INCLUSIVE;
 import static exception.code.ErrorCode.INVALID_BONUS_NUMBER_RANGE;
 
 public class BonusNumberInput {
-
-    private static final int MIN_LOTTO_NUMBER_INCLUSIVE = 1;
-
-    private static final int MAX_LOTTO_NUMBER_INCLUSIVE = 45;
 
     private final int bonusNumber;
 

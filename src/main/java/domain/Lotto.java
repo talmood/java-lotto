@@ -6,12 +6,11 @@ import util.CollectionUtils;
 import java.util.HashSet;
 import java.util.List;
 
+import static constant.LottoConstants.MAX_LOTTO_NUMBER_INCLUSIVE;
+import static constant.LottoConstants.MIN_LOTTO_NUMBER_INCLUSIVE;
 import static exception.code.ErrorCode.*;
 
 public class Lotto {
-
-    private static final int MIN_LOTTO_NUMBER_INCLUSIVE = 1;
-    private static final int MAX_LOTTO_NUMBER_INCLUSIVE = 45;
 
     private final List<Integer> lottoNumbers;
 
@@ -30,7 +29,10 @@ public class Lotto {
         if (!isAllLottoNumberRange(lottoNumbers)) {
             throw new DomainValidationException(
                     INVALID_LOTTO_NUMBER_RANGE,
-                    String.format("로또 번호의 범위는 %d부터 %d까지 입니다.", MIN_LOTTO_NUMBER_INCLUSIVE, MAX_LOTTO_NUMBER_INCLUSIVE)
+                    String.format("로또 번호의 범위는 %d부터 %d까지 입니다.",
+                            MIN_LOTTO_NUMBER_INCLUSIVE,
+                            MAX_LOTTO_NUMBER_INCLUSIVE
+                    )
             );
         }
     }

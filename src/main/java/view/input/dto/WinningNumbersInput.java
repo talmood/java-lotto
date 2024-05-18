@@ -8,13 +8,13 @@ import util.CollectionUtils;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static constant.LottoConstants.MAX_LOTTO_NUMBER_INCLUSIVE;
+import static constant.LottoConstants.MIN_LOTTO_NUMBER_INCLUSIVE;
 import static exception.code.ErrorCode.COLLECTION_MUST_NOT_BE_EMPTY;
 import static exception.code.ErrorCode.INVALID_RANGE_NUMBERS_INPUT;
 
 public class WinningNumbersInput {
 
-    private static final int MIN_LOTTO_NUMBER_INCLUSIVE = 1;
-    private static final int MAX_LOTTO_NUMBER_INCLUSIVE = 45;
     private final List<Integer> winningNumbers;
 
     public WinningNumbersInput(List<Integer> winningNumbers) {

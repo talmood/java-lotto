@@ -1,8 +1,8 @@
 package domain;
 
-public class PurchaseCountCalculator {
+import static constant.LottoConstants.LOTTO_PRICE;
 
-    private static final int LOTTO_PRICE = 1000;
+public class PurchaseCountCalculator {
 
     private final PurchaseAmount purchaseAmount;
 
@@ -11,6 +11,6 @@ public class PurchaseCountCalculator {
     }
 
     public PurchaseCount calculate() {
-        return PurchaseCount.create(this.purchaseAmount.fetchPurchaseAmount()/LOTTO_PRICE);
+        return PurchaseCount.create(this.purchaseAmount.fetchPurchaseAmount() / LOTTO_PRICE);
     }
 }
