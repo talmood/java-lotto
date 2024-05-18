@@ -24,4 +24,16 @@ public class LottoWinnings {
             throw new DomainValidationException(ErrorCode.COLLECTION_MUST_NOT_BE_EMPTY, "당첨 정보는 null이거나 empty이면 안됩니다.");
         }
     }
+
+    public long sumAllWinningAmount() {
+        return this.lottoWinnings.stream()
+                .mapToLong(LottoWinning::fetchWinningAmount)
+                .sum();
+    }
+
+    public long countMatchLottoWinning(LottoWinning lottoWinning) {
+        return this.lottoWinnings.stream()
+                .filter(lottoWinning::isEqual)
+                .count();
+    }
 }

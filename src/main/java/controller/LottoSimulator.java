@@ -8,6 +8,7 @@ import view.input.dto.PurchaseInput;
 import view.input.dto.WinningNumbersInput;
 import view.output.ConsoleOutputView;
 import view.output.OutputView;
+import view.output.dto.LottoWinningStatisticsOutput;
 import view.output.dto.LottosOutput;
 import view.output.dto.PurchaseOutput;
 
@@ -35,6 +36,7 @@ public class LottoSimulator {
 
         LottosResultCalculator lottosResultCalculator = new LottosResultCalculator(lottos, winningNumbers, bonusNumber);
         LottoWinnings lottoWinnings = lottosResultCalculator.calculate();
-
+        LottoWinningStatisticsOutput lottoWinningStatisticsOutput = LottoWinningStatisticsOutput.from(lottoWinnings, purchaseAmount);
+        outputView.viewWinningStatistics(lottoWinningStatisticsOutput);
     }
 }

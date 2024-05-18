@@ -47,6 +47,7 @@ public class ConsoleInputView implements InputView {
     public BonusNumberInput inputBonusNumber() {
         System.out.println(BONUS_NUMBER_NAVIGATION);
         String input = Console.readLine();
+        System.out.println();
         this.validateNumber(input);
 
         return new BonusNumberInput(Integer.parseInt(input));

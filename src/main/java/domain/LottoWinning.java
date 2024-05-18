@@ -41,7 +41,19 @@ public enum LottoWinning {
         return this.matchBonusNumberCount == matchBonusNumberCount;
     }
 
-    private long fetchWinningAmount() {
+    public long fetchWinningAmount() {
         return this.winningAmount;
+    }
+
+    public long fetchMatchWinningNumberCount() {
+        return this.matchWinningNumberCount;
+    }
+
+    public boolean isMatchBonusNumber() {
+        return this.matchBonusNumberCount > 0;
+    }
+
+    public boolean isEqual(LottoWinning lottoWinning) {
+        return this == lottoWinning;
     }
 }
