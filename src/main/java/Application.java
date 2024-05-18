@@ -2,6 +2,7 @@ import controller.AmountRequest;
 import controller.BonusNumberRequest;
 import controller.WinningNumberRequest;
 import domain.PhraseLottoExecutor;
+import domain.RateCalculateExecutor;
 import domain.WinningConfirmExecutor;
 import view.InputView;
 import vo.LottoNumberCollectionList;
@@ -19,6 +20,9 @@ public class Application {
 		BonusNumberRequest bonusNumberRequest = InputView.inputBonusNumber();
 		WinningConfirmExecutor winningConfirmExecutor = new WinningConfirmExecutor(lottoNumberCollectionList, winningNumberRequest, bonusNumberRequest);
 		WinningTypeCollection winningTypeCollection = winningConfirmExecutor.confirmWinningType();
+
+		RateCalculateExecutor rateCalculateExecutor = new RateCalculateExecutor(amountRequest, winningTypeCollection);
+		rateCalculateExecutor.calculateRate();
 	}
 
 }
