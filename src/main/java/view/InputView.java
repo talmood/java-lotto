@@ -1,6 +1,7 @@
 package view;
 
 import controller.AmountRequest;
+import controller.BonusNumberRequest;
 import controller.WinningNumberRequest;
 import utils.Console;
 import validator.InputValidator;
@@ -31,6 +32,18 @@ public class InputView {
 		} catch (IllegalArgumentException e) {
 			System.out.println(e.getMessage());
 			return inputWinningNumber();
+		}
+	}
+
+	public static BonusNumberRequest inputBonusNumber() {
+		System.out.println(INPUT_BONUS_NUMBER_MESSAGE);
+		try {
+			final String bonusNumberInput = Console.readLine();
+			InputValidator.validateBonusNumberInput(bonusNumberInput);
+			return BonusNumberRequest.of(bonusNumberInput);
+		} catch (IllegalArgumentException e) {
+			System.out.println(e.getMessage());
+			return inputBonusNumber();
 		}
 	}
 }

@@ -1,10 +1,13 @@
 package view;
 
 import vo.LottoNumberCollection;
+import vo.WinningTypeCollection;
+import vo.enums.WinningType;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 public class OutputView {
@@ -30,6 +33,14 @@ public class OutputView {
 		lottoNumberStringBuilder.append(SQUARE_BRACKETS_CLOSE);
 
 		System.out.println(lottoNumberStringBuilder);
+	}
+
+	public static void outputLottoWinningPrice(final WinningTypeCollection winningTypeCollection) {
+		Map<WinningType, Long> winningTypeVsMatchCountMap = winningTypeCollection.fetchMapOfWinningTypeVsMatchCount();
+
+		for (WinningType winningType : winningTypeCollection.getAllWinningType()) {
+			System.out.println(String.format("%s - %d개", winningType.getTitle(), winningTypeVsMatchCountMap.get(winningType)));
+		}
 	}
 
 }

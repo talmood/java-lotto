@@ -1,8 +1,11 @@
 import controller.AmountRequest;
+import controller.BonusNumberRequest;
 import controller.WinningNumberRequest;
 import domain.PhraseLottoExecutor;
+import domain.WinningConfirmExecutor;
 import view.InputView;
 import vo.LottoNumberCollectionList;
+import vo.WinningTypeCollection;
 
 public class Application {
 
@@ -13,7 +16,9 @@ public class Application {
 		LottoNumberCollectionList lottoNumberCollectionList = phraseLottoExecutor.pickLottoNumber();
 
 		WinningNumberRequest winningNumberRequest = InputView.inputWinningNumber();
-
+		BonusNumberRequest bonusNumberRequest = InputView.inputBonusNumber();
+		WinningConfirmExecutor winningConfirmExecutor = new WinningConfirmExecutor(lottoNumberCollectionList, winningNumberRequest, bonusNumberRequest);
+		WinningTypeCollection winningTypeCollection = winningConfirmExecutor.confirmWinningType();
 	}
 
 }

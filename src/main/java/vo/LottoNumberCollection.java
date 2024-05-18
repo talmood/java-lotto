@@ -18,4 +18,15 @@ public class LottoNumberCollection {
 	public List<Integer> getPickLottoNumbers() {
 		return List.copyOf(this.pickLottoNumbers);
 	}
+
+	public int countWinningMatch(final List<Integer> winningNumbers) {
+		return (int) this.pickLottoNumbers.stream()
+			.filter(winningNumbers::contains)
+			.count();
+	}
+
+	public boolean isMatchBonus(final int bonusNumber) {
+		return this.pickLottoNumbers.stream()
+			.anyMatch(pickNumber -> pickNumber == bonusNumber);
+	}
 }

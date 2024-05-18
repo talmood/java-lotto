@@ -18,9 +18,13 @@ public class WinningNumberRequest {
 	}
 
 	private static List<Integer> generateWinningNumber(final String winningNumberInput) {
-		String[] splitInput = winningNumberInput.split(WINNING_NUMBER_SPLIT_REGEX);
+		String[] splitInput = winningNumberInput.trim().split(WINNING_NUMBER_SPLIT_REGEX);
 		return Arrays.stream(splitInput)
 			.map(Integer::parseInt)
 			.collect(Collectors.toList());
+	}
+
+	public List<Integer> getWinningNumbers() {
+		return List.copyOf(this.winningNumbers);
 	}
 }
