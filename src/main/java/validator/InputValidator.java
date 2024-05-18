@@ -26,11 +26,15 @@ public class InputValidator {
 	public static void validateManualCountNotNumber(final String manualCountInput, final int lottoAmount) {
 		try {
 			int manualCount = Integer.parseInt(manualCountInput);
-			if (manualCount > lottoAmount) {
-				throw new IllegalArgumentException(MANUAL_COUNT_NOT_BIGGER_EXCEPTION_MESSAGE);
-			}
+			validateManualCountLeastThanLottoAmount(lottoAmount, manualCount);
 		} catch (NumberFormatException e) {
 			throw new IllegalArgumentException(MANUAL_COUNT_NOT_NUMBER_EXCEPTION_MESSAGE);
+		}
+	}
+
+	private static void validateManualCountLeastThanLottoAmount(int lottoAmount, int manualCount) {
+		if (manualCount > lottoAmount) {
+			throw new IllegalArgumentException(MANUAL_COUNT_NOT_BIGGER_EXCEPTION_MESSAGE);
 		}
 	}
 
@@ -52,12 +56,14 @@ public class InputValidator {
 		try {
 			Arrays.stream(splitInput)
 				.map(Integer::parseInt)
-				.forEach(manualNumber -> {
-					if (!isLottoNumberRange(manualNumber)) {
-						throw new IllegalArgumentException(MANUAL_NUMBER_NOT_NUMBER_MESSAGE);
-					}
-				});
+				.forEach(InputValidator::validateManualNumberRange);
 		} catch (NumberFormatException e) {
+			throw new IllegalArgumentException(MANUAL_NUMBER_NOT_NUMBER_MESSAGE);
+		}
+	}
+
+	private static void validateManualNumberRange(final int manualNumber) {
+		if (!isLottoNumberRange(manualNumber)) {
 			throw new IllegalArgumentException(MANUAL_NUMBER_NOT_NUMBER_MESSAGE);
 		}
 	}
@@ -109,7 +115,7 @@ public class InputValidator {
 		}
 	}
 
-	private static void validateBonusNumberRange(int bonusNumber) {
+	private static void validateBonusNumberRange(final int bonusNumber) {
 		if (!isLottoNumberRange(bonusNumber)) {
 			throw new IllegalArgumentException(BONUS_NUMBER_NOT_NUMBER_MESSAGE);
 		}
