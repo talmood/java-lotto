@@ -1,8 +1,11 @@
 package lotto;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 public class MoneyTest {
 
@@ -18,5 +21,18 @@ public class MoneyTest {
 		assertThatThrownBy(() ->Money.from(0))
 			.isInstanceOf(IllegalArgumentException.class)
 			.hasMessage("최소 1원 이상이어야 합니다.");
+	}
+
+	@CsvSource(value = {
+		"1, 2, false",
+		"2, 1, true"
+	})
+	@ParameterizedTest
+	void 입력받은_가격보다_돈이_충분한지_판단한다(final int money, final int price, final boolean expected) {
+		final Money sut = Money.from(money);
+
+		final boolean actual = sut.hasEnoughMoneyFor(price);
+
+		assertThat(actual).isEqualTo(expected);
 	}
 }

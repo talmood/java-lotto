@@ -12,4 +12,8 @@ public class Money {
 		MoneyValidator.validate(money);
 		return new Money(money);
 	}
+
+	public boolean hasEnoughMoneyFor(final int price) {
+		return this.money >= price;
+	}
 }
