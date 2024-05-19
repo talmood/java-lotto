@@ -3,9 +3,9 @@ package lotto.domain;
 import java.util.List;
 import java.util.Set;
 
-public class LottoNumbers {
+import static lotto.constrant.LottoConstant.LOTTO_NUMBER_SIZE;
 
-    private static final int LOTTO_NUMBER_SIZE = 6;
+public class LottoNumbers {
 
     private final List<LottoNumber> numbers;
 
@@ -34,5 +34,15 @@ public class LottoNumbers {
 
     public List<LottoNumber> getNumbers() {
         return List.copyOf(numbers);
+    }
+
+    public int calculateMatchCounts(final List<LottoNumber> winningNumbers) {
+        return (int) numbers.stream()
+                .filter(winningNumbers::contains)
+                .count();
+    }
+
+    public boolean containsBonusNumber(final LottoNumber bonusNumber) {
+        return numbers.contains(bonusNumber);
     }
 }

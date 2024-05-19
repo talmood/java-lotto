@@ -2,14 +2,15 @@ package lotto.request;
 
 import lotto.utils.PatternUtil;
 
+import static lotto.constrant.LottoConstant.LOTTO_PRICE;
+
 public class LottoPurchaseRequest {
-    private static final int MIN_PURCHASE_AMOUNT = 1000;
-    private static final int UNIT_PURCHASE_AMOUNT = 1000;
     private static final String PURCHASE_AMOUNT_REGEX = "^[0-9]*$";
 
     private static final String ERROR_PURCHASE_AMOUNT_NOT_A_NUMBER = "[ERROR] 구입 금액은 숫자여야 합니다.";
-    private static final String ERROR_PURCHASE_AMOUNT_TOO_LOW = "[ERROR] 구입 금액은 1000원 이상이어야 합니다.";
-    private static final String ERROR_PURCHASE_AMOUNT_NOT_MULTIPLE_OF_1000 = "[ERROR] 구입 금액은 1000원 단위여야 합니다.";
+    private static final String ERROR_PURCHASE_AMOUNT_TOO_LOW = "[ERROR] 구입 금액은 %d원 이상이어야 합니다.";
+    private static final String ERROR_PURCHASE_AMOUNT_NOT_MULTIPLE_OF_LOTTO_PRICE = "[ERROR] 로또 구입 금액은 %d원 단위여야 합니다.";
+
 
     private final int purchaseAmount;
 
@@ -34,17 +35,17 @@ public class LottoPurchaseRequest {
     }
 
     private static void validatePurchaseAmount(final int purchaseAmount) {
-        if (purchaseAmount < MIN_PURCHASE_AMOUNT) {
-            throw new IllegalArgumentException(ERROR_PURCHASE_AMOUNT_TOO_LOW);
+        if (purchaseAmount < LOTTO_PRICE) {
+            throw new IllegalArgumentException(ERROR_PURCHASE_AMOUNT_TOO_LOW.formatted(LOTTO_PRICE));
         }
 
-        if (purchaseAmount % UNIT_PURCHASE_AMOUNT != 0) {
-            throw new IllegalArgumentException(ERROR_PURCHASE_AMOUNT_NOT_MULTIPLE_OF_1000);
+        if (purchaseAmount % LOTTO_PRICE != 0) {
+            throw new IllegalArgumentException(ERROR_PURCHASE_AMOUNT_NOT_MULTIPLE_OF_LOTTO_PRICE.formatted(LOTTO_PRICE));
         }
     }
 
     public int calculatePurchaseCount() {
-        return purchaseAmount / UNIT_PURCHASE_AMOUNT;
+        return purchaseAmount / LOTTO_PRICE;
     }
 
 }

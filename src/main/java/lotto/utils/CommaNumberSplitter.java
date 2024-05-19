@@ -15,6 +15,7 @@ public class CommaNumberSplitter {
         }
 
         return Arrays.stream(str.split(DELIMITER))
+                .map(String::trim)
                 .map(Integer::parseInt)
                 .toList();
     }

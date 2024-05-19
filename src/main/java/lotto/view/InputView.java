@@ -1,5 +1,6 @@
 package lotto.view;
 
+import lotto.request.LastWeekWinningLottoRequest;
 import lotto.request.LottoPurchaseRequest;
 import lotto.utils.Console;
 
@@ -17,6 +18,11 @@ public class InputView {
         return LottoPurchaseRequest.from(Console.readLine());
     }
 
-    public static void inputLastWeekWinningNumbers() {
+    public static LastWeekWinningLottoRequest inputLastWeekWinningNumbers() {
+        System.out.println(INPUT_LAST_WEEK_WINNING_NUMBERS_MESSAGE);
+        final String lastWeekWinningNumbers = Console.readLine();
+        System.out.println(INPUT_BONUS_BALL_MESSAGE);
+        final String bonusNumber = Console.readLine();
+        return LastWeekWinningLottoRequest.from(lastWeekWinningNumbers, bonusNumber);
     }
 }

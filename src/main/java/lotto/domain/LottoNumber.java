@@ -2,10 +2,10 @@ package lotto.domain;
 
 import java.util.Objects;
 
-public class LottoNumber {
+import static lotto.constrant.LottoConstant.MAX_LOTTO_NUMBER;
+import static lotto.constrant.LottoConstant.MIN_LOTTO_NUMBER;
 
-    private static final int MIN_NUMBER = 1;
-    private static final int MAX_NUMBER = 45;
+public class LottoNumber {
 
     private final int number;
 
@@ -19,7 +19,7 @@ public class LottoNumber {
     }
 
     private static void validate(final int number) {
-        if (number < MIN_NUMBER || number > MAX_NUMBER) {
+        if (number < MIN_LOTTO_NUMBER || number > MAX_LOTTO_NUMBER) {
             throw new IllegalArgumentException("로또 번호는 1부터 45까지의 숫자만 가능합니다.");
         }
     }

@@ -26,4 +26,11 @@ public class PurchasedLotto {
         return List.copyOf(lottoNumbers.getNumbers());
     }
 
+    public int calculateMatchCounts(final WinningLotto winningLotto) {
+        return lottoNumbers.calculateMatchCounts(winningLotto.getLottoNumbers());
+    }
+
+    public boolean containsBonusNumber(final WinningLotto winningLotto) {
+        return lottoNumbers.containsBonusNumber(winningLotto.getBonusNumber());
+    }
 }
