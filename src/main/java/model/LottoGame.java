@@ -1,10 +1,7 @@
 package model;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 public class LottoGame {
 
@@ -29,6 +26,10 @@ public class LottoGame {
 
     public List<LottoNumber> numbers() {
         return List.copyOf(this.numbers);
+    }
+
+    public boolean containsNumber(LottoNumber number) {
+        return this.numbers.contains(number);
     }
 
 }
