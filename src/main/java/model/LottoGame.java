@@ -8,7 +8,7 @@ import java.util.stream.IntStream;
 
 public class LottoGame {
 
-    private static final int LOTTO_NUMBER_SIZE = 6;
+    public static final int LOTTO_NUMBER_SIZE = 6;
 
     private final List<LottoNumber> numbers;
 
@@ -23,19 +23,8 @@ public class LottoGame {
         this.numbers = numbers;
     }
 
-    public static LottoGame publish() {
-        final List<Integer> lottoNumberCandidates = IntStream.range(LottoNumber.MIN_NUMBER, LottoNumber.MAX_NUMBER + 1)
-                .boxed()
-                .collect(Collectors.toList());
-
-        Collections.shuffle(lottoNumberCandidates);
-
-        final List<LottoNumber> numbers = lottoNumberCandidates.subList(0, LOTTO_NUMBER_SIZE)
-                .stream()
-                .map(LottoNumber::new)
-                .toList();
-
-        return new LottoGame(numbers);
+    public static LottoGame publish(LottoNumberGenerator numberGenerator) {
+        return new LottoGame(numberGenerator.generate());
     }
 
     public List<LottoNumber> numbers() {

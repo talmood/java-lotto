@@ -14,9 +14,9 @@ public class LottoTicketSeller {
         return INSTANCE;
     }
 
-    public LottoTicket buyLottoTicket(LottoPurchaseAmount purchaseAmount) {
+    public LottoTicket buyLottoTicket(LottoPurchaseAmount purchaseAmount, LottoNumberGenerator numberGenerator) {
         List<LottoGame> games = IntStream.range(0, purchaseAmount.calculateGameSize())
-                .mapToObj(gameSize -> LottoGame.publish())
+                .mapToObj(gameSize -> LottoGame.publish(numberGenerator))
                 .toList();
 
         return new LottoTicket(games);

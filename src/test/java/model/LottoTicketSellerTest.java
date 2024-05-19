@@ -19,7 +19,7 @@ public class LottoTicketSellerTest {
         final LottoPurchaseAmount amount = new LottoPurchaseAmount(purchaseAmount);
 
         // when
-        LottoTicket actual = LottoTicketSeller.getInstance().buyLottoTicket(amount);
+        LottoTicket actual = LottoTicketSeller.getInstance().buyLottoTicket(amount, new LottoNumberGeneratorImpl());
 
         // then
         assertThat(actual.getGameSize()).isEqualTo(expectedGameSize);

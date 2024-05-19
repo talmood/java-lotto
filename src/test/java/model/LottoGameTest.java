@@ -10,7 +10,7 @@ public class LottoGameTest {
     @DisplayName("로또 게임 발행 시 로또 숫자는 6개이다.")
     @Test
     void publish() {
-        final LottoGame actual = LottoGame.publish();
+        final LottoGame actual = LottoGame.publish(new LottoNumberGeneratorImpl());
         assertThat(actual.numbers()).hasSize(6);
     }
 
