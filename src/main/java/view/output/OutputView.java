@@ -2,11 +2,11 @@ package view.output;
 
 import view.output.dto.LottoWinningStatisticsOutput;
 import view.output.dto.LottosOutput;
-import view.output.dto.PurchaseOutput;
+import view.output.dto.PurchaseCountOutput;
 
 public interface OutputView {
 
-    void viewPurchaseAmount(PurchaseOutput purchaseOutput);
+    void viewPurchaseCount(PurchaseCountOutput purchaseCountOutput);
 
     void viewLottos(LottosOutput lottosOutput);
 

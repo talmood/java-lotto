@@ -4,12 +4,10 @@ import exception.InvalidInputException;
 import util.Console;
 import util.PatternMatchUtils;
 import util.StringUtils;
-import view.input.dto.BonusNumberInput;
-import view.input.dto.PurchaseInput;
-import view.input.dto.WinningNumbersInput;
+import view.input.dto.*;
 
-import java.util.Arrays;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 import static exception.code.ErrorCode.INVALID_NUMBERS_INPUT;
 import static exception.code.ErrorCode.INVALID_NUMBER_INPUT;
@@ -17,6 +15,8 @@ import static exception.code.ErrorCode.INVALID_NUMBER_INPUT;
 public class ConsoleInputView implements InputView {
 
     private static final String PURCHASE_AMOUNT_NAVIGATION = "구입금액을 입력해 주세요.";
+    private static final String MANUAL_PURCHASE_COUNT_NAVIGATION = "수동으로 구매할 로또 수를 입력해 주세요.";
+    private static final String MANUAL_LOTTO_NUMBERS_NAVIGATION = "수동으로 구매할 번호를 입력해 주세요.";
     private static final String WINNING_NUMBERS_NAVIGATION = "지난 주 당첨 번호를 입력해 주세요.";
     private static final String BONUS_NUMBER_NAVIGATION = "보너스 볼을 입력해 주세요.";
     private static final String NUMBERS_INPUT_REGEX = "^\\d{1,2}(,\\s\\d{1,2}){5}$";
@@ -26,8 +26,40 @@ public class ConsoleInputView implements InputView {
         System.out.println(PURCHASE_AMOUNT_NAVIGATION);
         String input = Console.readLine();
         this.validateNumber(input);
+        System.out.println();
 
         return new PurchaseInput(Integer.parseInt(input));
+    }
+
+    @Override
+    public ManualPurchaseCountInput inputManualPurchaseCount() {
+        System.out.println(MANUAL_PURCHASE_COUNT_NAVIGATION);
+        String input = Console.readLine();
+        this.validateNumber(input);
+        System.out.println();
+
+        return new ManualPurchaseCountInput(Integer.parseInt(input));
+    }
+
+    @Override
+    public ManualLottoNumbersInput inputManualLottoNumbers(int manualPurchaseCount) {
+        System.out.println(MANUAL_LOTTO_NUMBERS_NAVIGATION);
+
+        ManualLottoNumbersInput manualLottoNumbersInput = new ManualLottoNumbersInput(
+                IntStream.range(0, manualPurchaseCount)
+                        .mapToObj(count -> {
+                            String input = Console.readLine();
+                            this.validateNumbers(input);
+
+                            return input;
+                        })
+                        .map(input -> StringUtils.splitStrToNumbers(", ", input))
+                        .map(ManualLottoNumberInput::new)
+                        .collect(Collectors.toList())
+        );
+        System.out.println();
+
+        return manualLottoNumbersInput;
     }
 
     @Override
@@ -36,11 +68,7 @@ public class ConsoleInputView implements InputView {
         String input = Console.readLine();
         this.validateNumbers(input);
 
-        return new WinningNumbersInput(
-                Arrays.stream(input.split(", "))
-                        .map(Integer::parseInt)
-                        .collect(Collectors.toList())
-        );
+        return new WinningNumbersInput(StringUtils.splitStrToNumbers(", ", input));
     }
 
     @Override

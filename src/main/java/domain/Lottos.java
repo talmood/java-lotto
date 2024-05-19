@@ -1,5 +1,6 @@
 package domain;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -23,5 +24,12 @@ public class Lottos {
         return this.lottos.stream()
                 .map(lotto -> lotto.findLottoWinning(winningNumbers, bonusNumber))
                 .collect(Collectors.toList());
+    }
+
+    public Lottos addLottos(Lottos lottos) {
+        List<Lotto> copyLottos = new ArrayList<>(List.copyOf(this.lottos));
+        copyLottos.addAll(lottos.toList());
+
+        return new Lottos(copyLottos);
     }
 }

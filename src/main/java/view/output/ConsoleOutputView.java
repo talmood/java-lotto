@@ -3,11 +3,11 @@ package view.output;
 import view.output.dto.LottoWinningStatisticsOutput;
 import view.output.dto.LottoWinningsOutput;
 import view.output.dto.LottosOutput;
-import view.output.dto.PurchaseOutput;
+import view.output.dto.PurchaseCountOutput;
 
 public class ConsoleOutputView implements OutputView {
 
-    private static final String PURCHASE_COUNT_NAVIGATION = "%d개를 구매했습니다.";
+    private static final String PURCHASE_COUNT_NAVIGATION = "수동으로 %d장, 자동으로 %d개를 구매했습니다.";
     private static final String WINNING_STATISTICS_NAVIGATION = "당첨 통계";
     private static final String WINNING_SEPARATOR = "---------";
 
@@ -21,8 +21,12 @@ public class ConsoleOutputView implements OutputView {
     private static final String LOTTO_BREAK_EVEN_NAVIGATION = "(기준이 1이기 때문에 결과적으로 본전이라는 의미임)";
 
     @Override
-    public void viewPurchaseAmount(PurchaseOutput purchaseOutput) {
-        System.out.printf((PURCHASE_COUNT_NAVIGATION) + "%n", purchaseOutput.fetchPurchaseCount());
+    public void viewPurchaseCount(PurchaseCountOutput purchaseCountOutput) {
+        System.out.printf(
+                PURCHASE_COUNT_NAVIGATION + "%n",
+                purchaseCountOutput.fetchManualPurchaseCount(),
+                purchaseCountOutput.fetchAutoPurchaseCount()
+        );
     }
 
     @Override
@@ -45,7 +49,7 @@ public class ConsoleOutputView implements OutputView {
                                 lottoWinningOutput.fetchMatchCount()
                         )
         );
-        System.out.printf(makeRevenueNavigation(revenueRate), revenueRate);
+        System.out.printf(makeRevenueNavigation(revenueRate), Math.floor(revenueRate * 100) / 100.0);
     }
 
     private String makeWinningStatisticsNavigation(boolean matchBonusNumber) {

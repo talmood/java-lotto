@@ -3,14 +3,12 @@ package controller;
 import domain.*;
 import view.input.ConsoleInputView;
 import view.input.InputView;
-import view.input.dto.BonusNumberInput;
-import view.input.dto.PurchaseInput;
-import view.input.dto.WinningNumbersInput;
+import view.input.dto.*;
 import view.output.ConsoleOutputView;
 import view.output.OutputView;
 import view.output.dto.LottoWinningStatisticsOutput;
 import view.output.dto.LottosOutput;
-import view.output.dto.PurchaseOutput;
+import view.output.dto.PurchaseCountOutput;
 
 public class LottoSimulator {
 
@@ -20,12 +18,18 @@ public class LottoSimulator {
 
         PurchaseInput purchaseInput = inputView.inputPurchaseAmount();
         PurchaseAmount purchaseAmount = purchaseInput.toPurchaseAmount();
-        PurchaseCountCalculator purchaseCountCalculator = new PurchaseCountCalculator(purchaseAmount);
-        PurchaseCount purchaseCount = purchaseCountCalculator.calculate();
-        outputView.viewPurchaseAmount(PurchaseOutput.from(purchaseCount));
 
-        LottosGenerator lottosGenerator = new LottosGenerator(purchaseCount);
-        Lottos lottos = lottosGenerator.generate();
+        ManualPurchaseCountInput manualPurchaseCountInput = inputView.inputManualPurchaseCount();
+        PurchaseCount manualPurchaseCount = manualPurchaseCountInput.toManualPurchaseCount();
+        ManualLottoNumbersInput manualLottoNumbersInput = inputView.inputManualLottoNumbers(manualPurchaseCount.fetchPurchaseCount());
+        PurchaseCountCalculator purchaseCountCalculator = new PurchaseCountCalculator(purchaseAmount);
+        PurchaseCount autoPurchaseCount = purchaseCountCalculator.calculateAutoPurchaseCount(manualPurchaseCount);
+        outputView.viewPurchaseCount(PurchaseCountOutput.of(manualPurchaseCount, autoPurchaseCount));
+
+        LottosGenerator lottosGenerator = new LottosGenerator(autoPurchaseCount);
+        Lottos manualLottos = manualLottoNumbersInput.toLottos();
+        Lottos autoLottos = lottosGenerator.generate();
+        Lottos lottos = manualLottos.addLottos(autoLottos);
         outputView.viewLottos(LottosOutput.from(lottos));
 
         WinningNumbersInput winningNumbersInput = inputView.inputWinningNumbers();
