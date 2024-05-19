@@ -32,6 +32,16 @@ public class LottoWinningResult {
         );
     }
 
+    public LottoProfit confirmProfit(LottoPurchaseAmount purchaseAmount) {
+        return LottoProfit.of(purchaseAmount, calculatePrizeAmount());
+    }
+
+    private long calculatePrizeAmount() {
+        return this.countByLottoPrize.keySet().stream()
+                .mapToLong(prize -> prize.prizeAmount() * countByLottoPrize.get(prize))
+                .sum();
+    }
+
     public Map<LottoPrize, Long> countByLottoPrize() {
         return Map.copyOf(this.countByLottoPrize);
     }

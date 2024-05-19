@@ -1,9 +1,6 @@
 package view;
 
-import model.LottoGame;
-import model.LottoNumber;
-import model.LottoTicket;
-import model.LottoWinningResult;
+import model.*;
 
 import java.util.List;
 
@@ -32,6 +29,10 @@ public class ResultView {
     public void showLottoWinningResult(LottoWinningResult winningResult) {
         outputWriter.writeMessage("당첨 통계" + System.lineSeparator() + "---------");
         outputWriter.writeMessage(LottoPrizeFormatter.format(winningResult));
+    }
+
+    public void showProfit(LottoProfit lottoProfit) {
+        outputWriter.writeMessage("총 수익률은 %.2f입니다.".formatted(lottoProfit.profit()));
     }
 
 }
