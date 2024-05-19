@@ -20,4 +20,11 @@ public class WinningLotto {
 			throw new IllegalArgumentException("당첨 번호와 보너스 번호는 겹칠 수 없습니다.");
 		}
 	}
+
+	public LottoRank calculateRank(final Lotto lotto) {
+		final int hitCount = lotto.calculateHitCount(this.winningLotto);
+		final boolean hasBonusNumber = lotto.isContains(this.bonusLottoNumber);
+
+		return LottoRank.of(hitCount, hasBonusNumber);
+	}
 }

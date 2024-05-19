@@ -1,5 +1,6 @@
 package lotto;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 import static org.junit.jupiter.params.provider.Arguments.arguments;
 
@@ -24,9 +25,18 @@ public class LottoTest {
 
 	@Test
 	void 로또는_중복된_번호가_존재할_수_없다() {
-		assertThatThrownBy(() -> Lotto.from(LottoTest.createLottoNumbers(1, 1, 3, 4, 5, 6)))
+		assertThatThrownBy(() -> Lotto.from(createLottoNumbers(1, 1, 3, 4, 5, 6)))
 			.isInstanceOf(IllegalArgumentException.class)
 			.hasMessage("로또는 중복된 번호가 존재할 수 없습니다.");
+	}
+
+	@Test
+	void 로또_번호_적중_횟수를_계산한다() {
+		final Lotto sut = Lotto.from(createLottoNumbers(1, 2, 3, 4, 5, 6));
+
+		final int actual = sut.calculateHitCount(Lotto.from(createLottoNumbers(1, 2, 3, 4, 5, 7)));
+
+		assertThat(actual).isEqualTo(5);
 	}
 
 	private static Stream<Arguments> provideLottoNumbers() {

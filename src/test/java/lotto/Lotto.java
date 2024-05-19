@@ -18,4 +18,10 @@ public class Lotto {
 	public boolean isContains(final LottoNumber lottoNumber) {
 		return lottoNumbers.contains(lottoNumber);
 	}
+
+	public int calculateHitCount(final Lotto lotto) {
+		return (int) lottoNumbers.stream()
+			.filter(lotto::isContains)
+			.count();
+	}
 }
