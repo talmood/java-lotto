@@ -24,7 +24,8 @@ class LottoNumberTest {
     @ValueSource(ints = {0, 46})
     void createLottoNumberFail(int number) {
         // when & then
-        assertThrows(IllegalArgumentException.class, () -> LottoNumber.from(number))
-                .getMessage().equals("로또 번호는 1부터 45까지의 숫자만 가능합니다.");
+
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> LottoNumber.from(number));
+        assertEquals("로또 번호는 1부터 45까지의 숫자만 가능합니다.", exception.getMessage());
     }
 }
