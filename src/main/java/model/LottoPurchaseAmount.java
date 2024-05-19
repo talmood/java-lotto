@@ -17,4 +17,8 @@ public record LottoPurchaseAmount(
 
     }
 
+    public int calculateGameSize() {
+        return this.amount / AMOUNT_UNIT;
+    }
+
 }

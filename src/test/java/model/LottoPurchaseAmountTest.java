@@ -3,6 +3,7 @@ package model;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -33,6 +34,17 @@ class LottoPurchaseAmountTest {
         assertThatThrownBy(() -> new LottoPurchaseAmount(amount))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("로또 구매 금액은 1000원 단위여야합니다.");
+    }
+
+    @DisplayName("로또 게임 횟수는 1000원 당 한 게임이다.")
+    @ParameterizedTest
+    @CsvSource({
+            "1000,1",
+            "13_000,13"
+    })
+    void calculateGameSize(int amount, int expectedGameSize) {
+        final LottoPurchaseAmount sut = new LottoPurchaseAmount(amount);
+        assertThat(sut.calculateGameSize()).isEqualTo(expectedGameSize);
     }
 
 }
