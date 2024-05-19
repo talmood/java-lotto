@@ -10,12 +10,21 @@ public class LottoProcessor {
     }
 
     public void processGame() {
-        //구매 금액을 입력받는다.
+
         Integer price = acceptPriceForLottoGame();
 
         Integer gameCount = decideGameCount(price);
         resultView.printPurchasedGameCount(gameCount);
 
+        createLottoByGameCount(gameCount);
+        //14개를 구매했습니다.
+        //[8, 21, 23, 41, 42, 43]
+
+    }
+
+    private void createLottoByGameCount(Integer gameCount) {
+        Lotto lotto= new Lotto(gameCount);
+        System.out.println("lotto = " + lotto.toString());
 
     }
 
