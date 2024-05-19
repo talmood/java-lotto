@@ -6,7 +6,7 @@ import java.util.stream.IntStream;
 
 public class LottoVendor {
 
-	private static final int LOTTO_PRICE = 1_000;
+	public static final int LOTTO_PRICE = 1_000;
 
 	private final Money money;
 

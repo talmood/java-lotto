@@ -18,4 +18,24 @@ public class LottoResult {
 			.collect(groupingBy(winningLotto::calculateRank, summingInt(value -> 1)));
 		return new LottoResult(rankResults);
 	}
+
+	public double calculateProfitRate() {
+		final long totalReward = calculateTotalReward();
+		final int purchaseAmount = calculatePurchaseAmount();
+
+		return totalReward / (double) purchaseAmount;
+	}
+
+	private long calculateTotalReward() {
+		return this.rankResults.entrySet().stream()
+			.map(rankResult -> rankResult.getKey().reward() * rankResult.getValue())
+			.reduce(0L, Long::sum);
+	}
+
+	private int calculatePurchaseAmount() {
+		final int numberOfPurchases = this.rankResults.values().stream()
+			.mapToInt(i -> i)
+			.sum();
+		return numberOfPurchases * LottoVendor.LOTTO_PRICE;
+	}
 }

@@ -13,9 +13,9 @@ public enum LottoRank {
 	;
 
 	private final int hitCount;
-	private final int reward;
+	private final long reward;
 
-	LottoRank(final int hitCount, final int reward) {
+	LottoRank(final int hitCount, final long reward) {
 		this.hitCount = hitCount;
 		this.reward = reward;
 	}
@@ -30,6 +30,10 @@ public enum LottoRank {
 
 	private boolean isSameHitCount(final int hitCount) {
 		return this.hitCount == hitCount;
+	}
+
+	public long reward() {
+		return this.reward;
 	}
 }
 
