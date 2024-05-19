@@ -1,19 +1,22 @@
 package lotto.controller;
 
 import lotto.domain.LottoNumber;
+import lotto.domain.LottoNumbers;
 import lotto.domain.PurchasedLotto;
 
 import java.util.*;
 
 public class LottoGenerator {
 
-    private final List<Integer> lottoNumbers;
+    private static final int LOTTO_NUMBER_SIZE = 6;
+
+    private final List<Integer> candidateLottoNumbers;
 
     public LottoGenerator() {
-        this.lottoNumbers = initializeLottoNumbers();
+        this.candidateLottoNumbers = initializeCandidateNumbers();
     }
 
-    private List<Integer> initializeLottoNumbers() {
+    private List<Integer> initializeCandidateNumbers() {
         final List<Integer> lottoNumbers = new ArrayList<>();
         for (int i = 1; i <= 45; i++) {
             lottoNumbers.add(i);
@@ -30,16 +33,14 @@ public class LottoGenerator {
     }
 
     private PurchasedLotto generatePurchasedLotto() {
-        final List<Integer> shuffledNumbers = new ArrayList<>(lottoNumbers);
+        final List<Integer> shuffledNumbers = new ArrayList<>(candidateLottoNumbers);
         Collections.shuffle(shuffledNumbers);
 
-        final List<Integer> generatedLottoNumbers = new ArrayList<>(shuffledNumbers.subList(0, 6));
-        Collections.sort(generatedLottoNumbers);
-
-        final List<LottoNumber> lottoNumbers = generatedLottoNumbers.stream()
+        final List<LottoNumber> lottoNumbers = shuffledNumbers.stream()
+                .limit(LOTTO_NUMBER_SIZE)
                 .map(LottoNumber::from)
                 .toList();
 
-        return PurchasedLotto.of(new LinkedHashSet<>(lottoNumbers));
+        return PurchasedLotto.of(LottoNumbers.from(lottoNumbers));
     }
 }

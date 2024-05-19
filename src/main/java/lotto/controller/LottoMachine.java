@@ -19,14 +19,13 @@ public class LottoMachine {
 
     }
 
-
     private static int inputPurchaseAmount() {
         final LottoPurchaseRequest lottoPurchaseRequest = InputView.inputPurchaseAmount();
         return lottoPurchaseRequest.calculatePurchaseCount();
     }
 
     private static void generateLottoNumbers(final int purchaseCount) {
-        LottoGenerator lottoGenerator = new LottoGenerator();
+        final LottoGenerator lottoGenerator = new LottoGenerator();
         final List<PurchasedLotto> purchasedLottos = lottoGenerator.generatePurchasedLottos(purchaseCount);
         ResultView.printPurchasedLottos(purchasedLottos);
     }

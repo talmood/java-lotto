@@ -3,8 +3,9 @@ package lotto.view;
 import lotto.domain.LottoNumber;
 import lotto.domain.PurchasedLotto;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class ResultView {
 
@@ -22,10 +23,11 @@ public class ResultView {
     }
 
     private static void printPurchasedLotto(final PurchasedLotto purchasedLotto) {
-        final List<Integer> lottoNumbers = purchasedLotto.getLottoNumbers().stream()
+        final List<Integer> lottoNumbers = new ArrayList<>(purchasedLotto.getLottoNumbers().stream()
                 .map(LottoNumber::getNumber)
-                .collect(Collectors.toList());
+                .toList());
 
+        Collections.sort(lottoNumbers);
         System.out.println(lottoNumbers);
     }
 }
