@@ -17,7 +17,7 @@ public class LottoPurchaseRequest {
         this.purchaseAmount = purchaseAmount;
     }
 
-    public static LottoPurchaseRequest of(final String purchaseAmount) {
+    public static LottoPurchaseRequest from(final String purchaseAmount) {
         validate(purchaseAmount);
         return new LottoPurchaseRequest(Integer.parseInt(purchaseAmount));
     }
@@ -43,7 +43,7 @@ public class LottoPurchaseRequest {
         }
     }
 
-    public int getPurchaseCount() {
+    public int calculatePurchaseCount() {
         return purchaseAmount / UNIT_PURCHASE_AMOUNT;
     }
 
