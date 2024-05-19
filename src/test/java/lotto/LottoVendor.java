@@ -1,5 +1,9 @@
 package lotto;
 
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+
 public class LottoVendor {
 
 	private static final int LOTTO_PRICE = 1_000;
@@ -19,5 +23,14 @@ public class LottoVendor {
 		if (!money.hasEnoughMoneyFor(LOTTO_PRICE)) {
 			throw new IllegalArgumentException("로또 한 장 가격은 1,000원입니다. 로또를 구매하시려면 1,000원 이상 입력해 주세요.");
 		}
+	}
+
+	public Lottos purchaseAutoLottos() {
+		final int purchasableCount = money.calculatePurchasableCount(LOTTO_PRICE);
+		final List<Lotto> purchasedAutoLottos = IntStream.rangeClosed(1, purchasableCount)
+			.mapToObj(i -> Lotto.from(new LottoNumberAutoGenerator().generate()))
+			.collect(Collectors.toList());
+
+		return new Lottos(purchasedAutoLottos);
 	}
 }

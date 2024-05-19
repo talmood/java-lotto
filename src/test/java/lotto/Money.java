@@ -16,4 +16,8 @@ public class Money {
 	public boolean hasEnoughMoneyFor(final int price) {
 		return this.money >= price;
 	}
+
+	public int calculatePurchasableCount(final int price) {
+		return this.money / price;
+	}
 }

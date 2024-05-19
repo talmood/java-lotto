@@ -35,4 +35,13 @@ public class MoneyTest {
 
 		assertThat(actual).isEqualTo(expected);
 	}
+
+	@Test
+	void 입력받은_가격에_대해_구매_가능한_개수를_반환한다() {
+		final Money sut = Money.from(5000);
+
+		final int actual = sut.calculatePurchasableCount(1000);
+
+		assertThat(actual).isEqualTo(5);
+	}
 }
