@@ -1,13 +1,11 @@
 package domain;
 
 import exception.DomainValidationException;
-import util.CollectionUtils;
 
 import java.util.HashSet;
 import java.util.List;
 
-import static constant.LottoConstants.MAX_LOTTO_NUMBER_INCLUSIVE;
-import static constant.LottoConstants.MIN_LOTTO_NUMBER_INCLUSIVE;
+import static constant.LottoConstants.*;
 import static exception.code.ErrorCode.*;
 
 public class Lotto {
@@ -15,7 +13,7 @@ public class Lotto {
     private final List<Integer> lottoNumbers;
 
     private Lotto(List<Integer> lottoNumbers) {
-        this.validateLottoNumbersNotEmpty(lottoNumbers);
+        this.validateLottoNumbersSize(lottoNumbers);
         this.validateLottoNumbersUnique(lottoNumbers);
         this.validateLottoNumbersInRange(lottoNumbers);
         this.lottoNumbers = lottoNumbers;
@@ -37,9 +35,12 @@ public class Lotto {
         }
     }
 
-    private void validateLottoNumbersNotEmpty(List<Integer> lottoNumbers) {
-        if (CollectionUtils.isEmpty(lottoNumbers)) {
-            throw new DomainValidationException(COLLECTION_MUST_NOT_BE_EMPTY, "로또 번호는 null이거나 empty하면 안됩니다.");
+    private void validateLottoNumbersSize(List<Integer> lottoNumbers) {
+        if (lottoNumbers.size() != LOTTO_NUMBERS_SIZE) {
+            throw new DomainValidationException(
+                    INVALID_LOTTO_NUMBERS_SIZE,
+                    String.format("로또 번호의 갯수는 %d개여야 합니다.", LOTTO_NUMBERS_SIZE)
+            );
         }
     }
 
