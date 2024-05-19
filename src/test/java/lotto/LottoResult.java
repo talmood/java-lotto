@@ -19,6 +19,10 @@ public class LottoResult {
 		return new LottoResult(rankResults);
 	}
 
+	public int CountBy(final LottoRank lottoRank) {
+		return this.rankResults.getOrDefault(lottoRank, 0);
+	}
+
 	public double calculateProfitRate() {
 		final long totalReward = calculateTotalReward();
 		final int purchaseAmount = calculatePurchaseAmount();

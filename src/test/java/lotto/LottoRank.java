@@ -32,6 +32,14 @@ public enum LottoRank {
 		return this.hitCount == hitCount;
 	}
 
+	public boolean hasReward() {
+		return this.reward != 0;
+	}
+
+	public int hitCount() {
+		return this.hitCount;
+	}
+
 	public long reward() {
 		return this.reward;
 	}

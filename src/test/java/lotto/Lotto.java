@@ -24,4 +24,8 @@ public class Lotto {
 			.filter(lotto::isContains)
 			.count();
 	}
+
+	public List<LottoNumber> lottoNumbers() {
+		return this.lottoNumbers;
+	}
 }
