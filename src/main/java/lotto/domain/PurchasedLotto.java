@@ -1,6 +1,6 @@
 package lotto.domain;
 
-import java.util.List;
+import java.util.LinkedHashSet;
 import java.util.Set;
 
 public class PurchasedLotto {
@@ -29,6 +29,6 @@ public class PurchasedLotto {
     }
 
     public Set<LottoNumber> getLottoNumbers() {
-        return Set.copyOf(lottoNumbers);
+        return new LinkedHashSet<>(lottoNumbers);
     }
 }
