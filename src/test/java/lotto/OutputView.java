@@ -11,16 +11,18 @@ public class OutputView {
 		System.out.println(e.getMessage());
 	}
 
-	public static void printLottoPurchaseResult(final Lottos lottos) {
-		System.out.printf("%d개를 구매했습니다.\n", lottos.countPurchasedLottos());
-		lottos.lottos()
-			.forEach(lotto -> {
-				final String lottoNumbers = lotto.lottoNumbers().stream()
-					.map(LottoNumber::value)
-					.map(String::valueOf)
-					.collect(Collectors.joining(", "));
-				System.out.printf("[%s]\n", lottoNumbers);
-			});
+	public static void printLottoPurchaseResult(final Lottos manualLottos, final Lottos autoLottos) {
+		System.out.printf("수동으로 %d장, 자동으로 %d개를 구매했습니다.\n", manualLottos.countPurchasedLottos(), autoLottos.countPurchasedLottos());
+		manualLottos.lottos().forEach(OutputView::printLottos);
+		autoLottos.lottos().forEach(OutputView::printLottos);
+	}
+
+	private static void printLottos(final Lotto lotto) {
+		final String lottoNumbers = lotto.lottoNumbers().stream()
+			.map(LottoNumber::value)
+			.map(String::valueOf)
+			.collect(Collectors.joining(", "));
+		System.out.printf("[%s]\n", lottoNumbers);
 	}
 
 	public static void printLottoResult(final LottoResult lottoResult) {

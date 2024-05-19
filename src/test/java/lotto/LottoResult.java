@@ -3,6 +3,7 @@ package lotto;
 import static java.util.stream.Collectors.groupingBy;
 import static java.util.stream.Collectors.summingInt;
 
+import java.util.EnumMap;
 import java.util.Map;
 
 public class LottoResult {
@@ -13,10 +14,27 @@ public class LottoResult {
 		this.rankResults = rankResults;
 	}
 
-	public static LottoResult of(final Lottos lottos, final WinningLotto winningLotto) {
-		final Map<LottoRank, Integer> rankResults = lottos.lottos().stream()
+	public static LottoResult of(final Lottos manualLottos, final Lottos autoLottos, final WinningLotto winningLotto) {
+		final Map<LottoRank, Integer> manualLottoResults = groupBy(manualLottos, winningLotto);
+		final Map<LottoRank, Integer> autoLottoResults = groupBy(autoLottos, winningLotto);
+		final Map<LottoRank, Integer> results = mergeResults(manualLottoResults, autoLottoResults);
+
+		return new LottoResult(results);
+	}
+
+	private static Map<LottoRank, Integer> groupBy(final Lottos autoLottos, final WinningLotto winningLotto) {
+		return autoLottos.lottos().stream()
 			.collect(groupingBy(winningLotto::calculateRank, summingInt(value -> 1)));
-		return new LottoResult(rankResults);
+	}
+
+	private static Map<LottoRank, Integer> mergeResults(Map<LottoRank, Integer> manualResults, Map<LottoRank, Integer> autoResults) {
+		Map<LottoRank, Integer> combinedResults = new EnumMap<>(LottoRank.class);
+
+		for (LottoRank rank : LottoRank.values()) {
+			combinedResults.put(rank, manualResults.getOrDefault(rank, 0) + autoResults.getOrDefault(rank, 0));
+		}
+
+		return combinedResults;
 	}
 
 	public int CountBy(final LottoRank lottoRank) {

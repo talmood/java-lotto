@@ -8,7 +8,7 @@ public class LottoVendor {
 
 	public static final int LOTTO_PRICE = 1_000;
 
-	private final Money money;
+	private Money money;
 
 	private LottoVendor(final Money money) {
 		this.money = money;
@@ -32,5 +32,13 @@ public class LottoVendor {
 			.collect(Collectors.toList());
 
 		return new Lottos(purchasedAutoLottos);
+	}
+
+	public Lottos purchaseManualLottos(final List<Lotto> lottos) {
+		final int priceOfLottos = lottos.size() * LOTTO_PRICE;
+
+		this.money = money.minus(priceOfLottos);
+
+		return new Lottos(lottos);
 	}
 }
