@@ -25,7 +25,7 @@ public class WinnerSelector {
 
             firstWinner = getFirstWinner(firstWinner, matchCount);
             secondWinner = getSecondWinner(secondWinner, bonusNumber, matchCount, gameNumbers);
-            thirdWinner = getThirdWinner(thirdWinner, matchCount);
+            thirdWinner = getThirdWinner(thirdWinner, bonusNumber, matchCount, gameNumbers);
             fourthWinner = getFourthWinner(fourthWinner, matchCount);
             fifthWinner = getFifthWinner(fifthWinner, matchCount);
         }
@@ -46,8 +46,8 @@ public class WinnerSelector {
         return fourthWinner;
     }
 
-    private int getThirdWinner(int thirdWinner, Integer matchCount) {
-        if (matchCount == 5) {
+    private int getThirdWinner(int thirdWinner, Integer bonusNumber, Integer matchCount, List<Integer> gameNumbers) {
+        if (matchCount == 5 && !isBonusNumberMatch(gameNumbers, bonusNumber)) {
             thirdWinner++;
         }
         return thirdWinner;

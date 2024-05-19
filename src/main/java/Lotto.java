@@ -4,7 +4,11 @@ import java.util.List;
 
 public class Lotto {
 
-    private final List <LottoGame> LottoGames;
+    public void setLottoGames(List<LottoGame> lottoGames) {
+        LottoGames = lottoGames;
+    }
+
+    List<LottoGame> LottoGames;
 
     public List<LottoGame> getLottoGames() {
         return new ArrayList<>(LottoGames);

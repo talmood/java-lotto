@@ -10,10 +10,11 @@ public class LottoGame {
 
     @Override
     public String toString() {
-        return  gameNumbers.toString();
+        return gameNumbers.toString();
     }
 
     public List<Integer> getGameNumbers() {
         return gameNumbers;
     }
+
 }

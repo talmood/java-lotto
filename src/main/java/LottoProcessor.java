@@ -20,7 +20,7 @@ public class LottoProcessor {
         Lotto lotto = createLottoByGameCount(gameCount);
         WinningLottoNumber winningLottoNumber = acceptWinningNumbers();
         Winners winners = selectWinners(lotto, winningLottoNumber);
-        showWinnerStatistics(winners,price);
+        showWinnerStatistics(winners, price);
     }
 
     private void showWinnerStatistics(Winners winners, Integer price) {
@@ -30,13 +30,13 @@ public class LottoProcessor {
     }
 
 
-    private Lotto createLottoByGameCount(Integer gameCount) {
-        Lotto lotto= new Lotto(gameCount);
+    public Lotto createLottoByGameCount(Integer gameCount) {
+        Lotto lotto = new Lotto(gameCount);
         resultView.printLottoGameNumbers(lotto);
         return lotto;
     }
 
-    private Integer purchaseGamesByPrice(Integer price) {
+    public Integer purchaseGamesByPrice(Integer price) {
         GameCountDecider gameCountDecider = new GameCountDecider();
         Integer gameCount = gameCountDecider.calculateGameForPrice(price);
         resultView.printPurchasedGameCount(gameCount);
@@ -69,7 +69,7 @@ public class LottoProcessor {
         return new WinningLottoNumber(winningNumbers, bonusNumber);
     }
 
-    private Winners selectWinners(Lotto lotto, WinningLottoNumber winningLottoNumber) {
+    public Winners selectWinners(Lotto lotto, WinningLottoNumber winningLottoNumber) {
         WinnerSelector winnerSelector = new WinnerSelector(lotto, winningLottoNumber);
         return winnerSelector.getWinners();
     }
