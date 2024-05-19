@@ -41,6 +41,6 @@ public class LottoGenerator {
                 .map(LottoNumber::from)
                 .toList();
 
-        return PurchasedLotto.of(LottoNumbers.from(lottoNumbers));
+        return PurchasedLotto.from(LottoNumbers.from(lottoNumbers));
     }
 }

@@ -12,7 +12,7 @@ public class PurchasedLotto {
         this.lottoNumbers = lottoNumbers;
     }
 
-    public static PurchasedLotto of(final LottoNumbers lottoNumbers) {
+    public static PurchasedLotto from(final LottoNumbers lottoNumbers) {
         return new PurchasedLotto(lottoNumbers);
     }
 
