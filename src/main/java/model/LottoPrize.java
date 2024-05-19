@@ -6,13 +6,13 @@ import java.util.function.BiFunction;
 
 public enum LottoPrize {
 
-    FIRST(5000, (WinningNumberMatchCount winningCount, BonusNumberMatched bonusMatched) -> {
+    FIRST(2000000000, (WinningNumberMatchCount winningCount, BonusNumberMatched bonusMatched) -> {
         return winningCount.countEquals(6) && !bonusMatched.matched();
     }),
-    SECOND(2000000000, (WinningNumberMatchCount winningCount, BonusNumberMatched bonusMatched) -> {
+    SECOND(30000000, (WinningNumberMatchCount winningCount, BonusNumberMatched bonusMatched) -> {
         return winningCount.countEquals(5) && bonusMatched.matched();
     }),
-    THIRD(30000000, (WinningNumberMatchCount winningCount, BonusNumberMatched bonusMatched) -> {
+    THIRD(1500000, (WinningNumberMatchCount winningCount, BonusNumberMatched bonusMatched) -> {
         return winningCount.countEquals(5) && !bonusMatched.matched();
     }),
     FOURTH(50000, (WinningNumberMatchCount winningCount, BonusNumberMatched bonusMatched) -> {
