@@ -14,4 +14,8 @@ public class Lotto {
 		LottoValidator.validate(lottoNumbers);
 		return new Lotto(lottoNumbers);
 	}
+
+	public boolean isContains(final LottoNumber lottoNumber) {
+		return lottoNumbers.contains(lottoNumber);
+	}
 }
