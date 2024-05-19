@@ -10,7 +10,6 @@ public class ConsoleOutputView implements OutputView {
     private static final String PURCHASE_COUNT_NAVIGATION = "수동으로 %d장, 자동으로 %d개를 구매했습니다.";
     private static final String WINNING_STATISTICS_NAVIGATION = "당첨 통계";
     private static final String WINNING_SEPARATOR = "---------";
-
     private static final String MATCH_WINNING_NUMBER_NAVIGATION = "%d개 일치";
     private static final String MATCH_BONUS_NUMBER_NAVIGATION = ", 보너스 볼 일치";
     private static final String WINNING_AMOUNT_NAVIGATION = " (%d원)";
