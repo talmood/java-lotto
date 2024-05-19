@@ -32,17 +32,5 @@ public class Lotto {
 
         return new LottoGame(gameNumbers);
     }
-    public static class LottoGame {
-        private final List<Integer> gameNumbers;
-
-        public LottoGame(List<Integer> gameNumbers) {
-            this.gameNumbers = new ArrayList<>(gameNumbers);
-        }
-
-        @Override
-        public String toString() {
-            return  gameNumbers.toString();
-        }
-    }
 
 }
