@@ -11,8 +11,17 @@ public class LottoProcessor {
 
     public void processGame() {
         //구매 금액을 입력받는다.
-        int price = acceptPriceForLottoGame();
+        Integer price = acceptPriceForLottoGame();
 
+        Integer gameCount = decideGameCount(price);
+        resultView.printPurchasedGameCount(gameCount);
+
+
+    }
+
+    private Integer decideGameCount(Integer price) {
+        GameCountDecider gameCountDecider = new GameCountDecider();
+        return gameCountDecider.calculateGameForPrice(price);
     }
 
     private int acceptPriceForLottoGame() {
