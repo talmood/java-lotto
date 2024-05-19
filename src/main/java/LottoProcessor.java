@@ -1,3 +1,7 @@
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+
 public class LottoProcessor {
 
     private final InputView inputView;
@@ -12,29 +16,36 @@ public class LottoProcessor {
     public void processGame() {
 
         Integer price = acceptPriceForLottoGame();
-
-        Integer gameCount = decideGameCount(price);
-        resultView.printPurchasedGameCount(gameCount);
-
-        createLottoByGameCount(gameCount);
-        //14개를 구매했습니다.
-        //[8, 21, 23, 41, 42, 43]
-
+        Integer gameCount = purchaseGamesByPrice(price);
+        Lotto lotto = createLottoByGameCount(gameCount);
+        WinningLottoNumber winningLottoNumber = acceptWinningNumbers();
+        Winners winners = selectWinners(lotto, winningLottoNumber);
+        showWinnerStatistics(winners,price);
     }
 
-    private void createLottoByGameCount(Integer gameCount) {
+    private void showWinnerStatistics(Winners winners, Integer price) {
+        resultView.printWinnerStatisticsMessage();
+        ProfitCalculator profitCalculator = new ProfitCalculator(winners, price);
+        resultView.printWinnerStatistics(winners, profitCalculator);
+    }
+
+
+    private Lotto createLottoByGameCount(Integer gameCount) {
         Lotto lotto= new Lotto(gameCount);
         resultView.printLottoGameNumbers(lotto);
-
+        return lotto;
     }
 
-    private Integer decideGameCount(Integer price) {
+    private Integer purchaseGamesByPrice(Integer price) {
         GameCountDecider gameCountDecider = new GameCountDecider();
-        return gameCountDecider.calculateGameForPrice(price);
+        Integer gameCount = gameCountDecider.calculateGameForPrice(price);
+        resultView.printPurchasedGameCount(gameCount);
+
+        return gameCount;
     }
 
     private int acceptPriceForLottoGame() {
-        inputView.guidePurchasePrice();
+        inputView.guideToPutPurchasePrice();
         Integer price;
 
         do {
@@ -43,5 +54,23 @@ public class LottoProcessor {
         } while (price == null);
 
         return price;
+    }
+
+    private WinningLottoNumber acceptWinningNumbers() {
+        inputView.guideToPutWinningNumbers();
+        String stringWinningNumbers = inputView.acceptInput();
+        List<Integer> winningNumbers = Arrays.stream(stringWinningNumbers.split(","))
+                .map(String::trim)
+                .map(Integer::parseInt).collect(Collectors.toList());
+
+        inputView.guideToPutBonusNumber();
+        int bonusNumber = Integer.parseInt(inputView.acceptInput());
+
+        return new WinningLottoNumber(winningNumbers, bonusNumber);
+    }
+
+    private Winners selectWinners(Lotto lotto, WinningLottoNumber winningLottoNumber) {
+        WinnerSelector winnerSelector = new WinnerSelector(lotto, winningLottoNumber);
+        return winnerSelector.getWinners();
     }
 }
