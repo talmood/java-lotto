@@ -1,10 +1,15 @@
 package view;
 
-import model.LottoNumber;
+import model.LottoBonusNumber;
 import model.LottoPurchaseAmount;
+import model.LottoWinningGame;
 
 public interface InputView {
 
     LottoPurchaseAmount inputLottoPurchaseAmount();
+
+    LottoWinningGame inputLottoWinningGame();
+
+    LottoBonusNumber inputLottoBonusNumber();
 
 }
