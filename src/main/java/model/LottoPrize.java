@@ -1,6 +1,7 @@
 package model;
 
 import java.util.Arrays;
+import java.util.Optional;
 import java.util.function.BiFunction;
 
 public enum LottoPrize {
@@ -32,7 +33,7 @@ public enum LottoPrize {
         this.prizeCriterion = prizeCriterion;
     }
 
-    public static LottoPrize computePrize(
+    public static Optional<LottoPrize> computePrize(
             WinningNumberMatchCount winningCount,
             BonusNumberMatched bonusMatched
     ) {
@@ -40,8 +41,7 @@ public enum LottoPrize {
                 .filter(prize -> prize.meetsPrizeCriterion(winningCount, bonusMatched))
                 .reduce((firstMatched, secondMatched) -> {
                     throw new IllegalStateException("조건과 일치하는 Prize가 2개 이상 존재합니다.");
-                })
-                .orElseThrow(() -> new IllegalArgumentException("조건과 일치하는 Prize가 존재하지 않습니다."));
+                });
     }
 
     public boolean meetsPrizeCriterion(

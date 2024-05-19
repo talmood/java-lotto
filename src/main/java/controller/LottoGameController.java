@@ -1,6 +1,6 @@
 package controller;
 
-import model.LottoPurchaseAmount;
+import model.*;
 import view.InputView;
 import view.ResultView;
 
@@ -15,8 +15,26 @@ public class LottoGameController {
     }
 
     public void run() {
-        final LottoPurchaseAmount purchaseAmount = inputView.inputLottoPurchaseAmount();
+        final LottoTicket lottoTicket = purchaseLottoTicket();
 
+        final LottoWinningNumbers winningNumbers = inputWinningNumbers();
+
+        final LottoWinningResult winningResult = winningNumbers.calculateWinningResult(lottoTicket);
+    }
+
+    private LottoTicket purchaseLottoTicket() {
+        final LottoPurchaseAmount purchaseAmount = inputView.inputLottoPurchaseAmount();
+        final LottoTicket lottoTicket = LottoTicketSeller.getInstance().buyLottoTicket(purchaseAmount, new LottoNumberGeneratorImpl());
+        resultView.showPurchasedLottoTicket(lottoTicket);
+
+        return lottoTicket;
+    }
+
+    private LottoWinningNumbers inputWinningNumbers() {
+        final LottoWinningGame winningGame = inputView.inputLottoWinningGame();
+        final LottoBonusNumber bonusNumber = inputView.inputLottoBonusNumber();
+
+        return new LottoWinningNumbers(winningGame, bonusNumber);
     }
 
 }

@@ -41,4 +41,10 @@ public class LottoGame {
         return this.numbers.contains(number);
     }
 
+    public long countMatchedNumber(LottoGame other) {
+        return this.numbers.stream()
+                .filter(other::containsNumber)
+                .count();
+    }
+
 }

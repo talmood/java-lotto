@@ -38,7 +38,7 @@ class LottoPrizeTest {
     }
 
     private void assertLottoPrize(int winningNumberMatchCount, BonusNumberMatched bonusMatched, LottoPrize expectedPrize) {
-        final LottoPrize actual = LottoPrize.computePrize(new WinningNumberMatchCount(winningNumberMatchCount), bonusMatched);
+        final LottoPrize actual = LottoPrize.computePrize(new WinningNumberMatchCount(winningNumberMatchCount), bonusMatched).get();
         assertThat(actual).isEqualTo(expectedPrize);
     }
 

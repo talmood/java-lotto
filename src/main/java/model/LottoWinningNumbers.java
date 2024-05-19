@@ -11,4 +11,16 @@ public record LottoWinningNumbers(
         }
     }
 
+    public LottoWinningResult calculateWinningResult(LottoTicket lottoTicket) {
+        return LottoWinningResult.of(this, lottoTicket);
+    }
+
+    public LottoGame fetchWiningGame() {
+        return this.winningGame.game();
+    }
+
+    public LottoNumber fetchBonusNumber() {
+        return this.bonusNumber.number();
+    }
+
 }

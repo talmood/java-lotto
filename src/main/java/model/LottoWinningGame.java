@@ -1,15 +1,11 @@
 package model;
 
-public class LottoWinningGame {
-
-    private final LottoGame winningGame;
-
-    public LottoWinningGame(LottoGame winningGame) {
-        this.winningGame = winningGame;
-    }
+public record LottoWinningGame(
+        LottoGame game
+) {
 
     public boolean containsNumber(LottoNumber number) {
-        return this.winningGame.containsNumber(number);
+        return this.game.containsNumber(number);
     }
 
 }
