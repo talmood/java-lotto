@@ -1,5 +1,7 @@
 package model;
 
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
 
@@ -15,7 +17,10 @@ public class LottoGame {
         }
         validateNumberSize(numbers);
 
-        this.numbers = numbers;
+        final List<LottoNumber> sortedAsc = new ArrayList<>(numbers);
+        sortedAsc.sort(Comparator.comparingInt(LottoNumber::number));
+
+        this.numbers = List.copyOf(sortedAsc);
     }
 
     private void validateNumberSize(List<LottoNumber> numbers) {
