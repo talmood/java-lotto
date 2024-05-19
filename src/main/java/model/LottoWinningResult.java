@@ -36,4 +36,8 @@ public class LottoWinningResult {
         return Map.copyOf(this.countByLottoPrize);
     }
 
+    public long getCountBy(LottoPrize prize) {
+        return this.countByLottoPrize.getOrDefault(prize, 0L);
+    }
+
 }

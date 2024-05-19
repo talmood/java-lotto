@@ -3,6 +3,7 @@ package view;
 import model.LottoGame;
 import model.LottoNumber;
 import model.LottoTicket;
+import model.LottoWinningResult;
 
 import java.util.List;
 
@@ -26,6 +27,11 @@ public class ResultView {
                 .map(LottoNumber::number)
                 .toList()
                 .toString();
+    }
+
+    public void showLottoWinningResult(LottoWinningResult winningResult) {
+        outputWriter.writeMessage("당첨 통계" + System.lineSeparator() + "---------");
+        outputWriter.writeMessage(LottoPrizeFormatter.format(winningResult));
     }
 
 }
