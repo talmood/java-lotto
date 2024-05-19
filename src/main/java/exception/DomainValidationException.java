@@ -10,4 +10,8 @@ public class DomainValidationException extends IllegalArgumentException {
         super(message);
         this.errorCode = errorCode;
     }
+
+    public ErrorCode fetchErrorCode() {
+        return this.errorCode;
+    }
 }
