@@ -39,6 +39,10 @@ public class Lotto {
             this.gameNumbers = new ArrayList<>(gameNumbers);
         }
 
+        @Override
+        public String toString() {
+            return  gameNumbers.toString();
+        }
     }
 
 }

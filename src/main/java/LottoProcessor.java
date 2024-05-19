@@ -24,7 +24,7 @@ public class LottoProcessor {
 
     private void createLottoByGameCount(Integer gameCount) {
         Lotto lotto= new Lotto(gameCount);
-        System.out.println("lotto = " + lotto.toString());
+        resultView.printLottoGameNumbers(lotto);
 
     }
 
