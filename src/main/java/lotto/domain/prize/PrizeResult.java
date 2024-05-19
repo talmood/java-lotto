@@ -1,6 +1,7 @@
 package lotto.domain.prize;
 
 import lotto.constrant.LottoConstant;
+import lotto.domain.LottoNumbers;
 import lotto.domain.PurchasedLotto;
 import lotto.domain.WinningLotto;
 
@@ -24,13 +25,13 @@ public class PrizeResult {
 
     public static PrizeResult from(final List<PurchasedLotto> purchasedLottos, final WinningLotto winningLotto) {
         final PrizeResult prizeResult = new PrizeResult();
-        purchasedLottos.forEach(purchasedLotto -> prizeResult.calculateAndRecordPrize(purchasedLotto, winningLotto));
+        purchasedLottos.forEach(purchasedLotto -> prizeResult.calculateAndRecordPrize(purchasedLotto.getLottoNumbers(), winningLotto));
         return prizeResult;
     }
 
-    private void calculateAndRecordPrize(final PurchasedLotto purchasedLotto, final WinningLotto winningLotto) {
-        final int matchCount = purchasedLotto.calculateMatchCounts(winningLotto);
-        final boolean isContainBonusNumber = purchasedLotto.containsBonusNumber(winningLotto);
+    private void calculateAndRecordPrize(final LottoNumbers lottoNumbers, final WinningLotto winningLotto) {
+        final int matchCount = lottoNumbers.calculateMatchCounts(winningLotto.getLottoNumbers());
+        final boolean isContainBonusNumber = lottoNumbers.containsBonusNumber(winningLotto.getBonusNumber());
 
         final Prize prize = Prize.of(matchCount, isContainBonusNumber);
         prizeCounts.put(prize, prizeCounts.get(prize) + 1);

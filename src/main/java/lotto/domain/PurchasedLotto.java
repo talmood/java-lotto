@@ -1,6 +1,5 @@
 package lotto.domain;
 
-import java.util.List;
 import java.util.Objects;
 
 public class PurchasedLotto {
@@ -22,15 +21,7 @@ public class PurchasedLotto {
         }
     }
 
-    public List<LottoNumber> getLottoNumbers() {
-        return List.copyOf(lottoNumbers.getNumbers());
-    }
-
-    public int calculateMatchCounts(final WinningLotto winningLotto) {
-        return lottoNumbers.calculateMatchCounts(winningLotto.getLottoNumbers());
-    }
-
-    public boolean containsBonusNumber(final WinningLotto winningLotto) {
-        return lottoNumbers.containsBonusNumber(winningLotto.getBonusNumber());
+    public LottoNumbers getLottoNumbers() {
+        return lottoNumbers;
     }
 }

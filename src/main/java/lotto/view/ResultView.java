@@ -31,7 +31,7 @@ public class ResultView {
     }
 
     private static void printPurchasedLotto(final PurchasedLotto purchasedLotto) {
-        final List<Integer> lottoNumbers = new ArrayList<>(purchasedLotto.getLottoNumbers().stream()
+        final List<Integer> lottoNumbers = new ArrayList<>(purchasedLotto.getLottoNumbers().getNumbers().stream()
                 .map(LottoNumber::getNumber)
                 .toList());
 
