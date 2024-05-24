@@ -5,11 +5,11 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
 
-public class LottoGame {
+public record LottoGame(
+        List<LottoNumber> numbers
+) {
 
     public static final int LOTTO_NUMBER_SIZE = 6;
-
-    private final List<LottoNumber> numbers;
 
     public LottoGame(List<LottoNumber> numbers) {
         if (Objects.isNull(numbers)) {
@@ -36,10 +36,6 @@ public class LottoGame {
 
     public static LottoGame publish(LottoNumberGenerator numberGenerator) {
         return new LottoGame(numberGenerator.generate());
-    }
-
-    public List<LottoNumber> numbers() {
-        return List.copyOf(this.numbers);
     }
 
     public boolean containsNumber(LottoNumber number) {
