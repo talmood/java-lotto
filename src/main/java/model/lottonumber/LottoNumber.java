@@ -1,4 +1,4 @@
-package model;
+package model.lottonumber;
 
 public record LottoNumber(
         int number

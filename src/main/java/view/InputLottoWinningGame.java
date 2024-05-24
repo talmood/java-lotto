@@ -1,8 +1,8 @@
 package view;
 
 import model.LottoGame;
-import model.LottoNumber;
 import model.LottoWinningGame;
+import model.lottonumber.LottoNumber;
 
 import java.util.Arrays;
 import java.util.List;

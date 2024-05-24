@@ -1,5 +1,7 @@
 package model;
 
+import model.lottonumber.LottoNumber;
+
 public record LottoWinningNumbers(
         LottoWinningGame winningGame,
         LottoBonusNumber bonusNumber

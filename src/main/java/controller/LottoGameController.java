@@ -1,6 +1,7 @@
 package controller;
 
 import model.*;
+import model.lottonumber.LottoNumberGeneratorImpl;
 import view.InputView;
 import view.ResultView;
 

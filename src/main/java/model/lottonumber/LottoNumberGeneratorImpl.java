@@ -1,4 +1,4 @@
-package model;
+package model.lottonumber;
 
 import java.util.Collections;
 import java.util.List;
@@ -6,8 +6,8 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 import static model.LottoGame.LOTTO_NUMBER_SIZE;
-import static model.LottoNumber.MAX_NUMBER;
-import static model.LottoNumber.MIN_NUMBER;
+import static model.lottonumber.LottoNumber.MAX_NUMBER;
+import static model.lottonumber.LottoNumber.MIN_NUMBER;
 
 public class LottoNumberGeneratorImpl implements LottoNumberGenerator {
 

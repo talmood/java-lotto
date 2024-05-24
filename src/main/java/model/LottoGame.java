@@ -1,5 +1,8 @@
 package model;
 
+import model.lottonumber.LottoNumber;
+import model.lottonumber.LottoNumberGenerator;
+
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;

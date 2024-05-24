@@ -1,6 +1,10 @@
 package view;
 
-import model.*;
+import model.LottoGame;
+import model.LottoProfit;
+import model.LottoTicket;
+import model.LottoWinningResult;
+import model.lottonumber.LottoNumber;
 
 import java.util.List;
 

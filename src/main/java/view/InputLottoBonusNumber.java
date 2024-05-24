@@ -1,7 +1,7 @@
 package view;
 
 import model.LottoBonusNumber;
-import model.LottoNumber;
+import model.lottonumber.LottoNumber;
 import utils.NumericUtils;
 
 public class InputLottoBonusNumber {

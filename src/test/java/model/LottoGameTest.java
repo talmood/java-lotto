@@ -1,5 +1,7 @@
 package model;
 
+import model.lottonumber.LottoNumber;
+import model.lottonumber.LottoNumberGeneratorImpl;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

@@ -1,5 +1,7 @@
 package model;
 
+import model.lottonumber.LottoNumberGenerator;
+
 import java.util.List;
 import java.util.stream.IntStream;
 
