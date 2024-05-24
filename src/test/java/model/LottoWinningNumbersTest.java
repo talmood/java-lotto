@@ -2,6 +2,7 @@ package model;
 
 import model.lottonumber.FakeLottoNumberGenerator;
 import model.lottonumber.LottoNumber;
+import model.lottonumber.LottoNumberPool;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -19,7 +20,7 @@ class LottoWinningNumbersTest {
     void should_not_be_duplicated() {
         final LottoWinningGame winningGame =
                 new LottoWinningGame(LottoGame.publish(FakeLottoNumberGenerator.fromNumbers(List.of(1, 2, 3, 4, 5, 6))));
-        final LottoBonusNumber bonusNumber = new LottoBonusNumber(new LottoNumber(1));
+        final LottoBonusNumber bonusNumber = new LottoBonusNumber(lottoNumber(1));
 
         assertThatThrownBy(() -> new LottoWinningNumbers(winningGame, bonusNumber))
                 .isInstanceOf(IllegalArgumentException.class)
@@ -41,10 +42,10 @@ class LottoWinningNumbersTest {
                 newLottoGame(1, 2, 8, 9, 10, 11)
         ));
 
-        final List<LottoNumber> prizeNumbers = Stream.of(1, 2, 3, 4, 5, 6).map(LottoNumber::new).toList();
+        final List<LottoNumber> prizeNumbers = Stream.of(1, 2, 3, 4, 5, 6).map(this::lottoNumber).toList();
         final LottoWinningNumbers sut = new LottoWinningNumbers(
                 new LottoWinningGame(new LottoGame(prizeNumbers)),
-                new LottoBonusNumber(new LottoNumber(7))
+                new LottoBonusNumber(lottoNumber(7))
         );
 
         // when
@@ -65,14 +66,18 @@ class LottoWinningNumbersTest {
     private LottoGame newLottoGame(int a, int b, int c, int d, int e, int f) {
         return new LottoGame(
                 List.of(
-                        new LottoNumber(a),
-                        new LottoNumber(b),
-                        new LottoNumber(c),
-                        new LottoNumber(d),
-                        new LottoNumber(e),
-                        new LottoNumber(f)
+                        lottoNumber(a),
+                        lottoNumber(b),
+                        lottoNumber(c),
+                        lottoNumber(d),
+                        lottoNumber(e),
+                        lottoNumber(f)
                 )
         );
+    }
+
+    private LottoNumber lottoNumber(int number) {
+        return LottoNumberPool.getInstance().getNumberBy(number);
     }
 
 }

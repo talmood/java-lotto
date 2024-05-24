@@ -25,7 +25,7 @@ public class ResultView {
 
     private String formatLottoGameOutput(LottoGame game) {
         return game.numbers().stream()
-                .map(LottoNumber::number)
+                .map(LottoNumber::getNumber)
                 .toList()
                 .toString();
     }

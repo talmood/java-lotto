@@ -3,6 +3,7 @@ package view;
 import model.LottoGame;
 import model.LottoWinningGame;
 import model.lottonumber.LottoNumber;
+import model.lottonumber.LottoNumberPool;
 
 import java.util.Arrays;
 import java.util.List;
@@ -26,7 +27,7 @@ public class InputLottoWinningGame {
 
     public LottoWinningGame toLottoWinningGame() {
         final List<LottoNumber> numbers = this.winningNumbers.stream()
-                .map(LottoNumber::new)
+                .map(number -> LottoNumberPool.getInstance().getNumberBy(number))
                 .toList();
 
         return new LottoWinningGame(new LottoGame(numbers));

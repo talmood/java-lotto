@@ -21,7 +21,7 @@ public record LottoGame(
         validateNumberSize(numbers);
 
         final List<LottoNumber> sortedAsc = new ArrayList<>(numbers);
-        sortedAsc.sort(Comparator.comparingInt(LottoNumber::number));
+        sortedAsc.sort(Comparator.comparingInt(LottoNumber::getNumber));
 
         this.numbers = List.copyOf(sortedAsc);
     }
@@ -31,7 +31,7 @@ public record LottoGame(
             throw new IllegalArgumentException("로또 게임 숫자는 서로 다른 6개로 이루어져야합니다.");
         }
 
-        long distinguishedNumberCount = numbers.stream().map(LottoNumber::number).distinct().count();
+        long distinguishedNumberCount = numbers.stream().map(LottoNumber::getNumber).distinct().count();
         if (distinguishedNumberCount != LOTTO_NUMBER_SIZE) {
             throw new IllegalArgumentException("로또 게임 숫자는 서로 다른 6개로 이루어져야합니다.");
         }

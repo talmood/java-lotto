@@ -1,7 +1,7 @@
 package view;
 
 import model.LottoBonusNumber;
-import model.lottonumber.LottoNumber;
+import model.lottonumber.LottoNumberPool;
 import utils.NumericUtils;
 
 public class InputLottoBonusNumber {
@@ -20,7 +20,7 @@ public class InputLottoBonusNumber {
     }
 
     public LottoBonusNumber toLottoBonusNumber() {
-        return new LottoBonusNumber(new LottoNumber(this.number));
+        return new LottoBonusNumber(LottoNumberPool.getInstance().getNumberBy(this.number));
     }
 
 }
