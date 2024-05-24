@@ -21,7 +21,7 @@ public class LottoNumberGeneratorImpl implements LottoNumberGenerator {
 
         return lottoNumberCandidates.subList(0, LOTTO_NUMBER_SIZE)
                 .stream()
-                .map(LottoNumber::new)
+                .map(candidate -> LottoNumberPool.getInstance().getNumberBy(candidate))
                 .toList();
     }
 
